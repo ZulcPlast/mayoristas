@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZulcPlast – Mayoristas de Plásticos para el Hogar | Bogotá</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --zulc-blue: #1B2B6B;
+    --zulc-yellow: #F5C800;
+    --zulc-orange: #E8500A;
+    --zulc-dark: #0D1A3E;
+    --zulc-light: #F4F6FF;
+    --zulc-white: #FFFFFF;
+    --zulc-gray: #8892B0;
+    --zulc-border: #DDE2F0;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--zulc-white);
+    color: var(--zulc-dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(11, 26, 62, 0.96);
+    backdrop-filter: blur(12px);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    border-bottom: 2px solid var(--zulc-yellow);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 38px; height: 38px;
+    background: var(--zulc-yellow);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px; color: var(--zulc-dark); font-weight: 900;
+    letter-spacing: 1px;
+  }
+  .nav-logo-text {
+    font-family: var(--font-display);
+    font-size: 22px; color: var(--zulc-white);
+    letter-spacing: 2px;
+  }
+  .nav-logo-text span { color: var(--zulc-yellow); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none; font-size: 14px;
+    font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--zulc-yellow); }
+  .nav-cta {
+    background: var(--zulc-yellow);
+    color: var(--zulc-dark) !important;
+    font-weight: 700 !important;
+    padding: 9px 20px;
+    border-radius: 6px;
+  }
+  .nav-cta:hover { background: #ffd700 !important; color: var(--zulc-dark) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--zulc-dark);
+    padding-top: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 70% 40%, rgba(27,43,107,0.8) 0%, transparent 60%),
+                radial-gradient(ellipse at 10% 80%, rgba(232,80,10,0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-content {
+    padding: 80px 5% 80px 8%;
+    position: relative; z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(245,200,0,0.12);
+    border: 1px solid rgba(245,200,0,0.35);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px; font-weight: 600;
+    color: var(--zulc-yellow);
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: '●'; font-size: 8px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 7vw, 88px);
+    line-height: 0.95;
+    color: var(--zulc-white);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 .accent { color: var(--zulc-yellow); }
+  .hero h1 .accent-orange { color: var(--zulc-orange); }
+  .hero-sub {
+    font-size: 17px; color: rgba(255,255,255,0.65);
+    line-height: 1.7; max-width: 420px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-stats {
+    display: flex; gap: 36px;
+    margin-bottom: 44px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .hero-stat {}
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: 36px; color: var(--zulc-yellow);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 12px; color: rgba(255,255,255,0.5);
+    letter-spacing: 0.5px; margin-top: 2px;
+  }
+  .hero-actions {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--zulc-yellow);
+    color: var(--zulc-dark);
+    font-weight: 700; font-size: 15px;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #ffd700; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,200,0,0.35); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent;
+    color: var(--zulc-white);
+    font-weight: 600; font-size: 15px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--zulc-yellow); color: var(--zulc-yellow); }
+
+  .hero-right {
+    position: relative; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-product-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    padding: 20px; width: 100%; max-width: 480px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-product-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .hero-product-card:hover {
+    background: rgba(245,200,0,0.1);
+    border-color: rgba(245,200,0,0.3);
+    transform: translateY(-3px);
+  }
+  .hero-product-card .emoji { font-size: 32px; margin-bottom: 8px; }
+  .hero-product-card .name {
+    font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.5px;
+  }
+  .hero-product-card.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(245,200,0,0.15), rgba(232,80,10,0.1));
+    border-color: rgba(245,200,0,0.3);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px;
+  }
+  .hero-product-card.featured .featured-text {
+    text-align: left;
+  }
+  .hero-product-card.featured .featured-text .label {
+    font-size: 11px; color: var(--zulc-yellow); letter-spacing: 1px; text-transform: uppercase; font-weight: 600;
+  }
+  .hero-product-card.featured .featured-text .value {
+    font-family: var(--font-display); font-size: 28px; color: white; letter-spacing: 1px;
+  }
+  .hero-product-card.featured .featured-badge {
+    background: var(--zulc-orange);
+    color: white; font-size: 11px; font-weight: 700;
+    padding: 6px 14px; border-radius: 100px;
+    letter-spacing: 0.5px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── INCENTIVOS BAR ─── */
+  .incentivos {
+    background: var(--zulc-yellow);
+    padding: 18px 5%;
+    display: flex; justify-content: center; gap: 60px;
+    flex-wrap: wrap;
+  }
+  .incentivo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 14px;
+    color: var(--zulc-dark);
+  }
+  .incentivo-icon { font-size: 20px; }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 90px 5%; }
+  .section-label {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--zulc-orange); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before {
+    content: ''; width: 30px; height: 2px;
+    background: var(--zulc-orange);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1; letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--zulc-gray);
+    max-width: 560px; line-height: 1.7;
+  }
+
+  /* ─── CATEGORÍAS ─── */
+  .categorias { background: var(--zulc-light); }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; margin-top: 50px;
+  }
+  .cat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 20px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .cat-card:hover {
+    border-color: var(--zulc-yellow);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(27,43,107,0.12);
+  }
+  .cat-icon { font-size: 44px; margin-bottom: 14px; }
+  .cat-name {
+    font-weight: 700; font-size: 16px;
+    color: var(--zulc-dark); margin-bottom: 6px;
+  }
+  .cat-count {
+    font-size: 13px; color: var(--zulc-gray);
+  }
+
+  /* ─── PRODUCTOS ─── */
+  .productos-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 20px; margin-bottom: 50px;
+  }
+  .productos-filters {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 1.5px solid var(--zulc-border);
+    background: white; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    color: var(--zulc-dark);
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--zulc-blue); color: white; border-color: var(--zulc-blue);
+  }
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .producto-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid var(--zulc-border);
+    transition: all 0.25s;
+    position: relative;
+  }
+  .producto-card:hover {
+    border-color: var(--zulc-blue);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(27,43,107,0.12);
+  }
+  .producto-img {
+    height: 180px;
+    background: linear-gradient(135deg, var(--zulc-light), #e8eaf6);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .producto-img::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: linear-gradient(to top, rgba(244,246,255,0.5), transparent);
+  }
+  .producto-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--zulc-blue); color: white;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 100px;
+    letter-spacing: 0.5px;
+  }
+  .producto-badge.hot { background: var(--zulc-orange); }
+  .producto-body { padding: 18px; }
+  .producto-categoria {
+    font-size: 11px; font-weight: 600;
+    color: var(--zulc-orange); letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .producto-name {
+    font-weight: 700; font-size: 17px;
+    color: var(--zulc-dark); margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .producto-desc {
+    font-size: 13px; color: var(--zulc-gray);
+    line-height: 1.5; margin-bottom: 14px;
+  }
+  .producto-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--zulc-border);
+  }
+  .producto-min {
+    font-size: 12px; color: var(--zulc-gray);
+  }
+  .producto-min span { font-weight: 700; color: var(--zulc-blue); }
+  .btn-cotizar {
+    background: var(--zulc-blue);
+    color: white; font-weight: 600; font-size: 13px;
+    padding: 8px 16px; border-radius: 6px;
+    border: none; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-cotizar:hover { background: var(--zulc-dark); }
+  .colores-dots {
+    display: flex; gap: 5px; margin-bottom: 10px;
+  }
+  .dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.1);
+  }
+
+  /* ─── CÓMO FUNCIONA ─── */
+  .como { background: var(--zulc-dark); color: white; }
+  .como .section-title { color: white; }
+  .como .section-sub { color: rgba(255,255,255,0.55); }
+  .pasos {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px; margin-top: 60px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px; overflow: hidden;
+  }
+  .paso {
+    padding: 40px 30px;
+    background: rgba(255,255,255,0.03);
+    transition: background 0.2s;
+    position: relative;
+  }
+  .paso:hover { background: rgba(245,200,0,0.06); }
+  .paso-num {
+    font-family: var(--font-display);
+    font-size: 56px; color: rgba(245,200,0,0.2);
+    line-height: 1; margin-bottom: 16px;
+  }
+  .paso-icon { font-size: 28px; margin-bottom: 12px; }
+  .paso-title { font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+  .paso-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* ─── FORMULARIO ─── */
+  .cotizacion { background: var(--zulc-light); }
+  .cotizacion-wrap {
+    display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px;
+    align-items: start; margin-top: 60px;
+  }
+  .cotizacion-info {}
+  .cotizacion-info h3 {
+    font-family: var(--font-display);
+    font-size: 36px; margin-bottom: 16px; color: var(--zulc-dark);
+  }
+  .cotizacion-info p { font-size: 15px; color: var(--zulc-gray); line-height: 1.7; margin-bottom: 30px; }
+  .beneficios-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .beneficios-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 14px; line-height: 1.5;
+  }
+  .beneficios-list li::before {
+    content: '✓'; min-width: 22px; height: 22px;
+    background: var(--zulc-blue); color: white;
+    border-radius: 50%; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .whatsapp-direct {
+    margin-top: 36px;
+    background: white;
+    border: 2px solid #25D366;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .wa-icon {
+    width: 48px; height: 48px; min-width: 48px;
+    background: #25D366; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+  .wa-text h4 { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+  .wa-text p { font-size: 13px; color: var(--zulc-gray); }
+  .wa-text a { color: #25D366; font-weight: 600; text-decoration: none; }
+
+  /* Form */
+  .form-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 40px rgba(27,43,107,0.1);
+    border: 2px solid var(--zulc-border);
+  }
+  .form-title {
+    font-family: var(--font-display);
+    font-size: 26px; color: var(--zulc-dark);
+    margin-bottom: 6px; letter-spacing: 0.5px;
+  }
+  .form-subtitle {
+    font-size: 14px; color: var(--zulc-gray); margin-bottom: 28px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block; font-size: 13px; font-weight: 600;
+    color: var(--zulc-dark); margin-bottom: 6px; letter-spacing: 0.3px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--zulc-border);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 14px; color: var(--zulc-dark);
+    background: white;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--zulc-blue);
+    box-shadow: 0 0 0 3px rgba(27,43,107,0.08);
+  }
+  .form-group textarea { height: 90px; resize: vertical; }
+
+  /* Selector de productos */
+  .productos-selector { margin-bottom: 18px; }
+  .productos-selector label {
+    display: block; font-size: 13px; font-weight: 600;
+    color: var(--zulc-dark); margin-bottom: 10px;
+  }
+  .producto-checkbox-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    max-height: 220px; overflow-y: auto;
+    border: 1.5px solid var(--zulc-border);
+    border-radius: 8px; padding: 12px;
+  }
+  .producto-checkbox-grid::-webkit-scrollbar { width: 4px; }
+  .producto-checkbox-grid::-webkit-scrollbar-track { background: transparent; }
+  .producto-checkbox-grid::-webkit-scrollbar-thumb { background: var(--zulc-border); border-radius: 2px; }
+  .prod-check {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 10px; border-radius: 6px;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .prod-check:hover { background: var(--zulc-light); }
+  .prod-check input[type="checkbox"] {
+    width: 15px; height: 15px; min-width: 15px;
+    accent-color: var(--zulc-blue); cursor: pointer;
+    padding: 0; border: none; box-shadow: none;
+  }
+  .prod-check span { font-size: 12px; font-weight: 500; color: var(--zulc-dark); line-height: 1.3; }
+  .prod-check input:checked + span { color: var(--zulc-blue); font-weight: 700; }
+
+  .descuento-badge {
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #fff8e1, #fff3cd);
+    border: 1.5px solid var(--zulc-yellow);
+    border-radius: 8px; padding: 10px 14px;
+    margin-bottom: 20px;
+    font-size: 13px; font-weight: 600; color: var(--zulc-dark);
+  }
+
+  .btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white; font-weight: 700; font-size: 16px;
+    padding: 16px; border-radius: 10px;
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+  .form-privacy {
+    text-align: center; font-size: 12px; color: var(--zulc-gray);
+    margin-top: 12px; line-height: 1.5;
+  }
+
+  /* ─── POR QUÉ ZULCPLAST ─── */
+  .porque { background: white; }
+  .porque-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px; margin-top: 50px;
+  }
+  .porque-card {
+    padding: 32px;
+    border-radius: 16px;
+    border: 2px solid var(--zulc-border);
+    transition: all 0.25s;
+  }
+  .porque-card:hover {
+    border-color: var(--zulc-yellow);
+    box-shadow: 0 8px 32px rgba(27,43,107,0.08);
+  }
+  .porque-icon { font-size: 36px; margin-bottom: 16px; }
+  .porque-title { font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+  .porque-desc { font-size: 14px; color: var(--zulc-gray); line-height: 1.6; }
+
+  /* ─── ZONAS ─── */
+  .zonas {
+    background: var(--zulc-blue);
+    color: white;
+    text-align: center;
+  }
+  .zonas .section-title { color: white; }
+  .zonas .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto 50px; }
+  .zonas-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px; max-width: 900px; margin: 0 auto;
+  }
+  .zona-chip {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 16px;
+    font-weight: 600; font-size: 14px;
+    transition: all 0.2s;
+  }
+  .zona-chip:hover { background: rgba(245,200,0,0.2); border-color: rgba(245,200,0,0.4); }
+  .zona-chip .flag { font-size: 22px; margin-bottom: 6px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--zulc-dark);
+    color: rgba(255,255,255,0.6);
+    padding: 60px 5% 30px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 30px;
+  }
+  .footer-brand .brand-name {
+    font-family: var(--font-display); font-size: 28px;
+    color: white; letter-spacing: 2px; margin-bottom: 12px;
+  }
+  .footer-brand .brand-name span { color: var(--zulc-yellow); }
+  .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 280px; margin-bottom: 20px; }
+  .footer-contact-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; margin-bottom: 8px;
+  }
+  .footer-col h4 { color: white; font-weight: 700; font-size: 15px; margin-bottom: 16px; }
+  .footer-col a {
+    display: block; color: rgba(255,255,255,0.55);
+    text-decoration: none; font-size: 14px; margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--zulc-yellow); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; flex-wrap: wrap; gap: 10px;
+  }
+  .footer-bottom span { color: var(--zulc-yellow); }
+
+  /* ─── FLOATING WA ─── */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 60px; height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+    text-decoration: none;
+    animation: bouncein 0.6s 1s ease both;
+    transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+  @keyframes bouncein {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .wa-float-label {
+    position: fixed; bottom: 38px; right: 98px; z-index: 998;
+    background: white; color: var(--zulc-dark);
+    font-weight: 600; font-size: 13px;
+    padding: 8px 14px; border-radius: 100px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+    white-space: nowrap;
+    animation: bouncein 0.6s 1.2s ease both;
+  }
+  .wa-float-label::after {
+    content: '';
+    position: absolute; right: -7px; top: 50%; transform: translateY(-50%);
+    border: 7px solid transparent;
+    border-right: none;
+    border-left-color: white;
+  }
+
+  /* ─── SUCCESS MODAL ─── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: white; border-radius: 20px;
+    padding: 50px 40px; text-align: center;
+    max-width: 440px; width: 90%;
+    animation: fadeUp 0.4s ease;
+  }
+  .modal-icon { font-size: 56px; margin-bottom: 16px; }
+  .modal h3 { font-family: var(--font-display); font-size: 32px; margin-bottom: 10px; }
+  .modal p { font-size: 15px; color: var(--zulc-gray); line-height: 1.6; margin-bottom: 28px; }
+  .modal-btn {
+    background: #25D366; color: white;
+    font-weight: 700; font-size: 15px;
+    padding: 14px 28px; border-radius: 10px;
+    border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    text-decoration: none;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-content { padding: 60px 5% 40px; }
+    .hero-right { height: 350px; }
+    .nav-links { display: none; }
+    .cotizacion-wrap { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-top > div:first-child { grid-column: span 2; }
+  }
+  @media (max-width: 600px) {
+    .hero-stats { gap: 24px; }
+    .incentivos { gap: 20px; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-top > div:first-child { grid-column: auto; }
+    .hero-product-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">ZP</div>
+    <span class="nav-logo-text">ZULC<span>PLAST</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#categorias">Productos</a>
+    <a href="#como-funciona">¿Cómo comprar?</a>
+    <a href="#zonas">Cobertura</a>
+    <a href="#cotizar" class="nav-cta">Cotizar Ahora →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Mayorista • Bogotá, Colombia</div>
+    <h1>
+      PLÁSTICOS<br>
+      PARA EL<br>
+      <span class="accent">HOGAR</span><br>
+      <span class="accent-orange">AL POR MAYOR</span>
+    </h1>
+    <p class="hero-sub">
+      Pedidos mínimos desde <strong style="color:white">50 unidades</strong> por producto.
+      Surtimos tiendas, cacharrerías, distribuidores y revendedores en Bogotá.
+      Más de <strong style="color:white">30 años</strong> fabricando calidad colombiana.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">30+</div>
+        <div class="hero-stat-label">Años de experiencia</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">50</div>
+        <div class="hero-stat-label">Unidades mínimas</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5+</div>
+        <div class="hero-stat-label">Líneas de producto</div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#cotizar" class="btn-primary">Solicitar Cotización →</a>
+      <a href="#categorias" class="btn-outline">Ver Catálogo</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-product-grid">
+      <div class="hero-product-card">
+        <div class="emoji">🧺</div>
+        <div class="name">Coladores & Cernidores</div>
+      </div>
+      <div class="hero-product-card">
+        <div class="emoji">🍽️</div>
+        <div class="name">Bandejas & Salseros</div>
+      </div>
+      <div class="hero-product-card">
+        <div class="emoji">🌿</div>
+        <div class="name">Materas</div>
+      </div>
+      <div class="hero-product-card">
+        <div class="emoji">🚰</div>
+        <div class="name">Jarras & Termos</div>
+      </div>
+      <div class="hero-product-card featured">
+        <div class="featured-text">
+          <div class="label">Primer pedido</div>
+          <div class="value">10% DESCUENTO + ENVÍO GRATIS</div>
+        </div>
+        <div class="featured-badge">OFERTA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCENTIVOS -->
+<div class="incentivos">
+  <div class="incentivo"><span class="incentivo-icon">🎁</span> 10% dto. en tu primer pedido</div>
+  <div class="incentivo"><span class="incentivo-icon">🚚</span> Envío gratis en tu primera compra</div>
+  <div class="incentivo"><span class="incentivo-icon">🏭</span> Fabricación 100% colombiana</div>
+  <div class="incentivo"><span class="incentivo-icon">♻️</span> Plástico reciclado, economía circular</div>
+</div>
+
+<!-- CATEGORÍAS -->
+<section class="categorias" id="categorias">
+  <div class="section-label">Nuestros productos</div>
+  <h2 class="section-title">Todo lo que tu negocio necesita</h2>
+  <p class="section-sub">Más de 40 referencias disponibles. Pedido mínimo: 50 uds por referencia en orden de mínimo 5 productos distintos.</p>
+  <div class="cat-grid">
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">🍽️</div>
+      <div class="cat-name">Cocina & Mesa</div>
+      <div class="cat-count">Coladores, cucharones, salseros, bandejas</div>
+    </a>
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">🏠</div>
+      <div class="cat-name">Hogar & Limpieza</div>
+      <div class="cat-count">Palanganas, basureras, cajas cocina</div>
+    </a>
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">🌿</div>
+      <div class="cat-name">Jardín & Materas</div>
+      <div class="cat-count">Materas #12 y #23, de colgar, ganchos</div>
+    </a>
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">🍶</div>
+      <div class="cat-name">Bebidas & Líquidos</div>
+      <div class="cat-count">Jarras 2-6 Lt, termos, botilitos, saleros</div>
+    </a>
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">🪑</div>
+      <div class="cat-name">Muebles Plásticos</div>
+      <div class="cat-count">Butacos, tablas de picar, bandeja cubiertera</div>
+    </a>
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">🚜</div>
+      <div class="cat-name">Juguetes & Otros</div>
+      <div class="cat-count">Retroescabadoras, alcancías</div>
+    </a>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos" style="background:white; padding-top: 60px;">
+  <div class="productos-header">
+    <div>
+      <div class="section-label">Catálogo mayorista</div>
+      <h2 class="section-title" style="margin-bottom:0">Referencias disponibles</h2>
+    </div>
+    <div class="productos-filters">
+      <button class="filter-btn active" onclick="filterProducts('all', this)">Todos</button>
+      <button class="filter-btn" onclick="filterProducts('cocina', this)">Cocina</button>
+      <button class="filter-btn" onclick="filterProducts('hogar', this)">Hogar</button>
+      <button class="filter-btn" onclick="filterProducts('jardin', this)">Jardín</button>
+      <button class="filter-btn" onclick="filterProducts('bebidas', this)">Bebidas</button>
+    </div>
+  </div>
+
+  <div class="productos-grid" id="productos-grid">
+
+    <!-- Coladores -->
+    <div class="producto-card" data-cat="cocina">
+      <div class="producto-img">🧺
+        <span class="producto-badge hot">🔥 Más vendido</span>
+      </div>
+      <div class="producto-body">
+        <div class="producto-categoria">Cocina</div>
+        <div class="producto-name">Colador Malla #9, #14 y #18</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#F5C800"></div>
+          <div class="dot" style="background:#1B2B6B"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#8E44AD"></div>
+        </div>
+        <div class="producto-desc">Colador plástico con malla metálica. Disponible en 3 tamaños. Alta rotación en tiendas.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Colador Malla (#9, #14, #18)')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colador Taza -->
+    <div class="producto-card" data-cat="cocina">
+      <div class="producto-img">☕</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Cocina</div>
+        <div class="producto-name">Colador Taza</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#F5C800"></div>
+          <div class="dot" style="background:#1B2B6B"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#8E44AD"></div>
+        </div>
+        <div class="producto-desc">Colador con forma de taza, ideal para filtrar jugos y caldos. Perfecto para restaurantes.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Colador Taza')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colador Tela -->
+    <div class="producto-card" data-cat="cocina">
+      <div class="producto-img">🫙</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Cocina</div>
+        <div class="producto-name">Colador Tela #9, #14 y #18</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#f5f5f5; border-color:#ccc"></div>
+        </div>
+        <div class="producto-desc">Malla en tela extra fina, especial para café o colado extra fino. Referencia única en el mercado.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Colador Tela (#9, #14, #18)')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cucharon -->
+    <div class="producto-card" data-cat="cocina">
+      <div class="producto-img">🥄
+        <span class="producto-badge hot">🔥 Alta rotación</span>
+      </div>
+      <div class="producto-body">
+        <div class="producto-categoria">Cocina</div>
+        <div class="producto-name">Cucharon Plástico</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#F5C800"></div>
+          <div class="dot" style="background:#1B2B6B"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#8E44AD"></div>
+        </div>
+        <div class="producto-desc">Cucharon resistente para cocina. Alta demanda en tiendas de barrio y mercados populares.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Cucharon')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cernidor -->
+    <div class="producto-card" data-cat="cocina">
+      <div class="producto-img">🪣</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Cocina</div>
+        <div class="producto-name">Cernidor</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#F5C800"></div>
+          <div class="dot" style="background:#1B2B6B"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#8E44AD"></div>
+        </div>
+        <div class="producto-desc">Bowl cernidor plástico de gran capacidad. Ideal para cocinas y restaurantes de alto volumen.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Cernidor')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Salseros -->
+    <div class="producto-card" data-cat="cocina">
+      <div class="producto-img">🍅
+        <span class="producto-badge">Línea completa</span>
+      </div>
+      <div class="producto-body">
+        <div class="producto-categoria">Cocina / Restaurante</div>
+        <div class="producto-name">Salseros — Línea Clásica y Lujo</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#F5C800"></div>
+          <div class="dot" style="background:#f5f5f5; border-color:#ccc"></div>
+          <div class="dot" style="background:#C0392B"></div>
+        </div>
+        <div class="producto-desc">Grande, mediano, pequeño, bombillo, lujo #1 y #2, jumbo. La línea más completa del mercado.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Salseros (Clásica y Lujo)')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandejas -->
+    <div class="producto-card" data-cat="cocina">
+      <div class="producto-img">🍱</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Cocina / Restaurante</div>
+        <div class="producto-name">Bandejas (Pequeña a Jumbo)</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#795548"></div>
+          <div class="dot" style="background:#f5f5f5; border-color:#ccc"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#2E86AB"></div>
+          <div class="dot" style="background:#2ECC71"></div>
+          <div class="dot" style="background:#1a1a1a"></div>
+        </div>
+        <div class="producto-desc">4 tamaños: pequeña, mediana, grande y jumbo. 6 colores. Ideales para restaurantes y cafeterías.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Bandejas')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Palangana -->
+    <div class="producto-card" data-cat="hogar">
+      <div class="producto-img">🪣
+        <span class="producto-badge hot">🔥 Muy vendido</span>
+      </div>
+      <div class="producto-body">
+        <div class="producto-categoria">Hogar</div>
+        <div class="producto-name">Palangana</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#F5C800"></div>
+          <div class="dot" style="background:#1B2B6B"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#8E44AD"></div>
+        </div>
+        <div class="producto-desc">Palangana plástica de alta resistencia. Producto de altísima rotación en tiendas de barrio.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Palangana')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Taza Agua -->
+    <div class="producto-card" data-cat="hogar">
+      <div class="producto-img">🥣</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Hogar</div>
+        <div class="producto-name">Taza para Agua</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#8E44AD"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#27AE60"></div>
+          <div class="dot" style="background:#F5C800"></div>
+        </div>
+        <div class="producto-desc">Taza plástica multiuso para agua. Colores vivos y resistente. Gran rotación.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Taza para Agua')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basurera -->
+    <div class="producto-card" data-cat="hogar">
+      <div class="producto-img">🗑️</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Hogar</div>
+        <div class="producto-name">Basurera Ratan 10 Lt</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#d4c5a9"></div>
+          <div class="dot" style="background:#F5C800"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#8E44AD"></div>
+        </div>
+        <div class="producto-desc">Basurera diseño ratán 10 litros con tapa. Estética moderna a precio mayorista.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Basurera Ratan 10Lt')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de Picar -->
+    <div class="producto-card" data-cat="cocina">
+      <div class="producto-img">🔪</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Cocina</div>
+        <div class="producto-name">Tabla de Picar (y Tabla Org)</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#27AE60"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#f5f5f5; border-color:#ccc"></div>
+          <div class="dot" style="background:#7f8c8d"></div>
+          <div class="dot" style="background:#2E86AB"></div>
+        </div>
+        <div class="producto-desc">Tabla de picar plástica con asa. Varios colores. La versión ORG incluye diseño especial.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Tabla de Picar')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Materas -->
+    <div class="producto-card" data-cat="jardin">
+      <div class="producto-img">🌱
+        <span class="producto-badge">Jardín</span>
+      </div>
+      <div class="producto-body">
+        <div class="producto-categoria">Jardín</div>
+        <div class="producto-name">Materas #12 y #23 + De Colgar</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#f5f5f5; border-color:#ccc"></div>
+          <div class="dot" style="background:#e8d5b7"></div>
+          <div class="dot" style="background:#1a1a1a"></div>
+          <div class="dot" style="background:#8B4513"></div>
+        </div>
+        <div class="producto-desc">Materas plásticas estilo maceta, de colgar y ganchos. Colores naturales. Alta rotación primavera.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Materas')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jarras -->
+    <div class="producto-card" data-cat="bebidas">
+      <div class="producto-img">🫙</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Bebidas</div>
+        <div class="producto-name">Jarras 2 Lt y 6 Lt</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#00BCD4"></div>
+          <div class="dot" style="background:#4CAF50"></div>
+          <div class="dot" style="background:#C0392B"></div>
+        </div>
+        <div class="producto-desc">Jarras plásticas de 2 y 6 litros. Transparentes con tapa de color. Ideales para restaurantes.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Jarras (2Lt y 6Lt)')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Termos -->
+    <div class="producto-card" data-cat="bebidas">
+      <div class="producto-img">🧊
+        <span class="producto-badge hot">🔥 Popular</span>
+      </div>
+      <div class="producto-body">
+        <div class="producto-categoria">Bebidas</div>
+        <div class="producto-name">Termo Aislado 5 Lts</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#F5C800"></div>
+          <div class="dot" style="background:#1B2B6B"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#8E44AD"></div>
+        </div>
+        <div class="producto-desc">Termo plástico aislado con grifo. 5 litros. Perfecto para fiestas, eventos y oficinas.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Termo 5 Lts')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botilitos -->
+    <div class="producto-card" data-cat="bebidas">
+      <div class="producto-img">🍼</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Bebidas</div>
+        <div class="producto-name">Botilitos (Pequeño, Mediano, Grande)</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#00BCD4"></div>
+          <div class="dot" style="background:#4CAF50"></div>
+          <div class="dot" style="background:#C0392B"></div>
+        </div>
+        <div class="producto-desc">Botilitos deportivos en 3 tamaños. Muy populares en colegios, gimnasios y tiendas de barrio.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Botilitos')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alcancía -->
+    <div class="producto-card" data-cat="hogar">
+      <div class="producto-img">🐷</div>
+      <div class="producto-body">
+        <div class="producto-categoria">Hogar / Variedad</div>
+        <div class="producto-name">Alcancía Cerdito</div>
+        <div class="colores-dots">
+          <div class="dot" style="background:#F5C800"></div>
+          <div class="dot" style="background:#1B2B6B"></div>
+          <div class="dot" style="background:#C0392B"></div>
+          <div class="dot" style="background:#8E44AD"></div>
+        </div>
+        <div class="producto-desc">Alcancía plástica forma cerdito. Gran rotación en tiendas de variedades y misceláneas.</div>
+        <div class="producto-footer">
+          <div class="producto-min">Mínimo <span>50 uds</span></div>
+          <button class="btn-cotizar" onclick="addToQuote('Alcancía Cerdito')">+ Cotizar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="como" id="como-funciona">
+  <div class="section-label" style="color:rgba(245,200,0,0.7)">Proceso de compra</div>
+  <h2 class="section-title">Así de fácil es comprarle a ZulcPlast</h2>
+  <p class="section-sub">Sin trámites complicados. Sin intermediarios. Directo de fábrica a tu negocio.</p>
+  <div class="pasos">
+    <div class="paso">
+      <div class="paso-num">01</div>
+      <div class="paso-icon">📋</div>
+      <div class="paso-title">Elige tus productos</div>
+      <div class="paso-desc">Selecciona mínimo 5 referencias distintas con 50 unidades cada una. Navega el catálogo arriba.</div>
+    </div>
+    <div class="paso">
+      <div class="paso-num">02</div>
+      <div class="paso-icon">💬</div>
+      <div class="paso-title">Cotiza por WhatsApp</div>
+      <div class="paso-desc">Llena el formulario y te redirigimos al WhatsApp con tu pedido pre-armado. Respuesta en menos de 2 horas.</div>
+    </div>
+    <div class="paso">
+      <div class="paso-num">03</div>
+      <div class="paso-icon">✅</div>
+      <div class="paso-title">Confirmamos el pedido</div>
+      <div class="paso-desc">Nuestro asesor te confirma disponibilidad, precio mayorista y condiciones de pago.</div>
+    </div>
+    <div class="paso">
+      <div class="paso-num">04</div>
+      <div class="paso-icon">🚚</div>
+      <div class="paso-title">Recibe en tu negocio</div>
+      <div class="paso-desc">Entregamos en toda Bogotá. Primer pedido con envío gratis. Empaque seguro para reventa.</div>
+    </div>
+  </div>
+</section>
+
+<!-- COTIZACIÓN -->
+<section class="cotizacion" id="cotizar">
+  <div class="section-label">Cotiza ahora</div>
+  <h2 class="section-title">¿Cuánto cuesta surtir tu negocio?</h2>
+  <p class="section-sub">Completa el formulario y en menos de 2 horas te enviamos la cotización por WhatsApp con todos los precios mayoristas.</p>
+
+  <div class="cotizacion-wrap">
+    <div class="cotizacion-info">
+      <h3>Requisitos de pedido</h3>
+      <p>Para garantizarte los mejores precios mayoristas, trabajamos con estos mínimos de orden:</p>
+      <ul class="beneficios-list">
+        <li>Mínimo <strong>5 productos distintos</strong> por orden</li>
+        <li>Mínimo <strong>50 unidades</strong> por referencia</li>
+        <li>Ticket de orden desde <strong>$500.000 COP</strong></li>
+        <li><strong>10% de descuento</strong> en tu primera compra</li>
+        <li><strong>Envío gratis</strong> en tu primer pedido (Bogotá)</li>
+        <li>Pago contra entrega disponible para clientes verificados</li>
+        <li>Factura electrónica incluida</li>
+      </ul>
+      <div class="whatsapp-direct">
+        <div class="wa-icon">💬</div>
+        <div class="wa-text">
+          <h4>¿Prefieres hablar directo?</h4>
+          <p>Escríbenos ahora: <a href="https://wa.me/573238344768?text=Hola%2C%20quiero%20información%20sobre%20precios%20mayoristas%20de%20ZulcPlast" target="_blank">+57 323 8344768</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-title">Solicitar Cotización</div>
+      <div class="form-subtitle">Respuesta garantizada en menos de 2 horas hábiles</div>
+
+      <div class="descuento-badge">
+        🎁 <strong>Oferta primer pedido:</strong> 10% de descuento + envío gratis a Bogotá
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre *</label>
+          <input type="text" id="f-nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+          <label>Nombre del negocio *</label>
+          <input type="text" id="f-negocio" placeholder="Tienda, cacharrería..." required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>WhatsApp *</label>
+          <input type="tel" id="f-wa" placeholder="3XX XXX XXXX" required>
+        </div>
+        <div class="form-group">
+          <label>Localidad / Barrio</label>
+          <input type="text" id="f-zona" placeholder="Kennedy, Suba, Bosa...">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Tipo de negocio</label>
+        <select id="f-tipo">
+          <option value="">Selecciona...</option>
+          <option>Tienda de barrio / Cacharrería</option>
+          <option>Distribuidor / Mayorista</option>
+          <option>Mercado popular (Corabastos, San Victorino)</option>
+          <option>Restaurante / Cocina industrial</option>
+          <option>Revendedor independiente</option>
+          <option>Otro</option>
+        </select>
+      </div>
+
+      <div class="productos-selector">
+        <label>Productos de interés (selecciona los que quieres cotizar)</label>
+        <div class="producto-checkbox-grid" id="productos-check">
+          <label class="prod-check"><input type="checkbox" value="Colador Malla (#9, #14, #18)"><span>Colador Malla #9, #14, #18</span></label>
+          <label class="prod-check"><input type="checkbox" value="Colador Taza"><span>Colador Taza</span></label>
+          <label class="prod-check"><input type="checkbox" value="Colador Tela (#9, #14, #18)"><span>Colador Tela (café)</span></label>
+          <label class="prod-check"><input type="checkbox" value="Alcancía Cerdito"><span>Alcancía Cerdito</span></label>
+          <label class="prod-check"><input type="checkbox" value="Taza para Agua"><span>Taza para Agua</span></label>
+          <label class="prod-check"><input type="checkbox" value="Bandeja Cubiertera"><span>Bandeja Cubiertera</span></label>
+          <label class="prod-check"><input type="checkbox" value="Cucharon"><span>Cucharón</span></label>
+          <label class="prod-check"><input type="checkbox" value="Cernidor"><span>Cernidor</span></label>
+          <label class="prod-check"><input type="checkbox" value="Butaco"><span>Butaco</span></label>
+          <label class="prod-check"><input type="checkbox" value="Palangana"><span>Palangana</span></label>
+          <label class="prod-check"><input type="checkbox" value="Salero"><span>Salero</span></label>
+          <label class="prod-check"><input type="checkbox" value="Caja Cocina"><span>Caja Cocina</span></label>
+          <label class="prod-check"><input type="checkbox" value="Tabla de Picar"><span>Tabla de Picar</span></label>
+          <label class="prod-check"><input type="checkbox" value="Basurera Ratan 10Lt"><span>Basurera Ratan 10Lt</span></label>
+          <label class="prod-check"><input type="checkbox" value="Termo 5 Lts"><span>Termo 5 Lts</span></label>
+          <label class="prod-check"><input type="checkbox" value="Salseros Clásica y Lujo"><span>Salseros</span></label>
+          <label class="prod-check"><input type="checkbox" value="Botilitos"><span>Botilitos</span></label>
+          <label class="prod-check"><input type="checkbox" value="Bandejas"><span>Bandejas</span></label>
+          <label class="prod-check"><input type="checkbox" value="Jarra 2Lt y 6Lt"><span>Jarras 2Lt / 6Lt</span></label>
+          <label class="prod-check"><input type="checkbox" value="Materas"><span>Materas</span></label>
+          <label class="prod-check"><input type="checkbox" value="Retroescabadora (juguete)"><span>Retroescabadora</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>¿Algo adicional que quieras comentar?</label>
+        <textarea id="f-nota" placeholder="Volumen estimado, productos específicos, condiciones especiales..."></textarea>
+      </div>
+
+      <button class="btn-submit" onclick="enviarCotizacion()">
+        💬 Enviar cotización por WhatsApp
+      </button>
+      <div class="form-privacy">🔒 Solo usamos tu número para enviarte la cotización. Sin spam.</div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ZULCPLAST -->
+<section class="porque">
+  <div class="section-label">Por qué elegirnos</div>
+  <h2 class="section-title">Fabricantes directos.<br>Sin intermediarios.</h2>
+  <div class="porque-grid">
+    <div class="porque-card">
+      <div class="porque-icon">🏭</div>
+      <div class="porque-title">30+ años fabricando</div>
+      <div class="porque-desc">Planta propia en Bogotá. Producción 100% colombiana con maquinaria de inyección de última tecnología.</div>
+    </div>
+    <div class="porque-card">
+      <div class="porque-icon">💰</div>
+      <div class="porque-title">Precio directo de fábrica</div>
+      <div class="porque-desc">Sin intermediarios. Al comprar mayorista directamente con nosotros, tu margen de reventa es real.</div>
+    </div>
+    <div class="porque-card">
+      <div class="porque-icon">🔄</div>
+      <div class="porque-title">Alta rotación garantizada</div>
+      <div class="porque-desc">Nuestros productos tienen rotación probada en tiendas de barrio. No te van a quedar en bodega.</div>
+    </div>
+    <div class="porque-card">
+      <div class="porque-icon">♻️</div>
+      <div class="porque-title">Economía circular</div>
+      <div class="porque-desc">Usamos plástico reciclado en nuestros procesos. Comprarle a ZulcPlast también es un impacto positivo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONAS -->
+<section class="zonas" id="zonas">
+  <div class="section-label" style="justify-content:center; color:rgba(245,200,0,0.7)">Cobertura</div>
+  <h2 class="section-title">Cubrimos toda Bogotá</h2>
+  <p class="section-sub">Entregamos en todas las localidades. Primer pedido con envío gratis.</p>
+  <div class="zonas-grid">
+    <div class="zona-chip"><div class="flag">📍</div>Kennedy</div>
+    <div class="zona-chip"><div class="flag">📍</div>Bosa</div>
+    <div class="zona-chip"><div class="flag">📍</div>Suba</div>
+    <div class="zona-chip"><div class="flag">📍</div>Ciudad Bolívar</div>
+    <div class="zona-chip"><div class="flag">📍</div>Usaquén</div>
+    <div class="zona-chip"><div class="flag">📍</div>Fontibón</div>
+    <div class="zona-chip"><div class="flag">📍</div>Puente Aranda</div>
+    <div class="zona-chip"><div class="flag">📍</div>San Victorino</div>
+    <div class="zona-chip"><div class="flag">📍</div>Corabastos</div>
+    <div class="zona-chip"><div class="flag">📍</div>Engativá</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="brand-name">ZULC<span>PLAST</span></div>
+      <p>Fabricantes de productos plásticos para el hogar en Bogotá, Colombia. Más de 30 años de experiencia sirviendo a revendedores y distribuidores.</p>
+      <div class="footer-contact-item">📍 Cr 76 #69a-38, Boyacá Real, Bogotá D.C.</div>
+      <div class="footer-contact-item">📞 +57 323 8344768</div>
+      <div class="footer-contact-item">✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bad3d4dcd5c8d7dbd9d3d5d4fac0cfd6d9cad6dbc9ce94d9d5d7">[email&#160;protected]</a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Productos</h4>
+      <a href="#categorias">Cocina & Mesa</a>
+      <a href="#categorias">Hogar & Limpieza</a>
+      <a href="#categorias">Jardín & Materas</a>
+      <a href="#categorias">Bebidas & Termos</a>
+      <a href="#categorias">Juguetes</a>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <a href="https://zulcplast.com/sobre-nosotros/">Quiénes somos</a>
+      <a href="#cotizar">Cotizar ahora</a>
+      <a href="https://wa.me/573238344768">WhatsApp directo</a>
+      <a href="https://zulcplast.com/contact/">Contacto</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 <span>ZulcPlast</span>. Todos los derechos reservados.</span>
+    <span>Fabricación colombiana con impacto social ♻️</span>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="wa-float-label">¡Cotiza ahora!</div>
+<a class="wa-float" href="https://wa.me/573238344768?text=Hola%2C%20quiero%20información%20sobre%20precios%20mayoristas" target="_blank">💬</a>
+
+<!-- MODAL ÉXITO -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-icon">🎉</div>
+    <h3>¡Cotización enviada!</h3>
+    <p id="modal-msg">Te estamos redirigiendo a WhatsApp con el detalle de tu pedido. Un asesor te confirmará precios en menos de 2 horas.</p>
+    <a href="#" id="modal-wa-btn" class="modal-btn" target="_blank">💬 Abrir WhatsApp</a>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ─── FILTER PRODUCTS ───
+  function filterProducts(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.producto-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // ─── ADD TO QUOTE (tick checkbox) ───
+  function addToQuote(productName) {
+    const checkboxes = document.querySelectorAll('#productos-check input[type="checkbox"]');
+    for (const cb of checkboxes) {
+      if (cb.value === productName) {
+        cb.checked = true;
+        document.getElementById('cotizar').scrollIntoView({ behavior: 'smooth' });
+        // Highlight the form card
+        const card = document.querySelector('.form-card');
+        card.style.borderColor = 'var(--zulc-yellow)';
+        card.style.boxShadow = '0 0 0 4px rgba(245,200,0,0.15)';
+        setTimeout(() => {
+          card.style.borderColor = '';
+          card.style.boxShadow = '';
+        }, 2000);
+        return;
+      }
+    }
+    // Not found → just scroll and note
+    document.getElementById('cotizar').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ─── SEND QUOTE VIA WHATSAPP ───
+  function enviarCotizacion() {
+    const nombre = document.getElementById('f-nombre').value.trim();
+    const negocio = document.getElementById('f-negocio').value.trim();
+    const wa = document.getElementById('f-wa').value.trim();
+    const zona = document.getElementById('f-zona').value.trim();
+    const tipo = document.getElementById('f-tipo').value;
+    const nota = document.getElementById('f-nota').value.trim();
+
+    if (!nombre || !negocio || !wa) {
+      alert('Por favor completa al menos: nombre, negocio y WhatsApp.');
+      return;
+    }
+
+    // Gather selected products
+    const checkboxes = document.querySelectorAll('#productos-check input[type="checkbox"]:checked');
+    const productos = Array.from(checkboxes).map(cb => '• ' + cb.value);
+
+    if (productos.length < 5) {
+      const confirm = window.confirm(`Recuerda que el pedido mínimo es de 5 referencias distintas. Llevas ${productos.length} seleccionadas. ¿Deseas continuar de todas formas?`);
+      if (!confirm) return;
+    }
+
+    // Build WhatsApp message
+    let msg = `Hola ZulcPlast! 👋\n\n`;
+    msg += `*Solicitud de Cotización Mayorista*\n`;
+    msg += `━━━━━━━━━━━━━━━\n`;
+    msg += `👤 *Nombre:* ${nombre}\n`;
+    msg += `🏪 *Negocio:* ${negocio}\n`;
+    msg += `📱 *WhatsApp:* ${wa}\n`;
+    if (zona) msg += `📍 *Zona:* ${zona}\n`;
+    if (tipo) msg += `🏷️ *Tipo de negocio:* ${tipo}\n`;
+    msg += `━━━━━━━━━━━━━━━\n`;
+    msg += `📦 *Productos de interés:*\n`;
+    if (productos.length > 0) {
+      msg += productos.join('\n') + '\n';
+    } else {
+      msg += '• (Ver catálogo completo)\n';
+    }
+    msg += `━━━━━━━━━━━━━━━\n`;
+    if (nota) msg += `💬 *Nota:* ${nota}\n`;
+    msg += `\n🎁 *Soy cliente nuevo — quiero el 10% de descuento + envío gratis*`;
+
+    const encoded = encodeURIComponent(msg);
+    const waUrl = `https://wa.me/573238344768?text=${encoded}`;
+
+    // Show modal
+    document.getElementById('modal-wa-btn').href = waUrl;
+    document.getElementById('modal').classList.add('active');
+
+    // Auto-open WA
+    setTimeout(() => { window.open(waUrl, '_blank'); }, 800);
+  }
+
+  // Close modal on overlay click
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('active');
+  });
+
+  // ─── SMOOTH SCROLL ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // ─── NAV SCROLL EFFECT ───
+  window.addEventListener('scro
