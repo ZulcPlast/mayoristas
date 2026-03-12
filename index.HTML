@@ -1544,352 +1544,7 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // ─── FILTER PRODUCTS ───
-  function filterProducts(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.producto-card').forEach(card => {
-      if (cat === 'all' || card.dataset.cat === cat) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  }
-
-  // ─── ADD TO QUOTE (tick checkbox) ───
-  function addToQuote(productName) {
-    const checkboxes = document.querySelectorAll('#productos-check input[type="checkbox"]');
-    for (const cb of checkboxes) {
-      if (cb.value === productName) {
-        cb.checked = true;
-        abrirCalculadora('');
-        // Highlight the form card
-        const card = document.querySelector('.form-card');
-        card.style.borderColor = 'var(--zulc-yellow)';
-        card.style.boxShadow = '0 0 0 4px rgba(245,200,0,0.15)';
-        setTimeout(() => {
-          card.style.borderColor = '';
-          card.style.boxShadow = '';
-        }, 2000);
-        return;
-      }
-    }
-    // Not found → just scroll and note
-    abrirCalculadora('');
-  }
-
-  // ─── SEND QUOTE VIA WHATSAPP ───
-  function enviarCotizacion() {
-    const nombre = document.getElementById('f-nombre').value.trim();
-    const negocio = document.getElementById('f-negocio').value.trim();
-    const wa = document.getElementById('f-wa').value.trim();
-    const zona = document.getElementById('f-zona').value.trim();
-    const tipo = document.getElementById('f-tipo').value;
-    const nota = document.getElementById('f-nota').value.trim();
-
-    if (!nombre || !negocio || !wa) {
-      alert('Por favor completa al menos: nombre, negocio y WhatsApp.');
-      return;
-    }
-
-    // Gather selected products
-    const checkboxes = document.querySelectorAll('#productos-check input[type="checkbox"]:checked');
-    const productos = Array.from(checkboxes).map(cb => '• ' + cb.value);
-
-    if (productos.length < 5) {
-      const confirm = window.confirm(`Recuerda que el pedido mínimo es de 5 referencias distintas. Llevas ${productos.length} seleccionadas. ¿Deseas continuar de todas formas?`);
-      if (!confirm) return;
-    }
-
-    // Build WhatsApp message
-    let msg = `Hola ZulcPlast! 👋\n\n`;
-    msg += `*Solicitud de Cotización Mayorista*\n`;
-    msg += `━━━━━━━━━━━━━━━\n`;
-    msg += `👤 *Nombre:* ${nombre}\n`;
-    msg += `🏪 *Negocio:* ${negocio}\n`;
-    msg += `📱 *WhatsApp:* ${wa}\n`;
-    if (zona) msg += `📍 *Zona:* ${zona}\n`;
-    if (tipo) msg += `🏷️ *Tipo de negocio:* ${tipo}\n`;
-    msg += `━━━━━━━━━━━━━━━\n`;
-    msg += `📦 *Productos de interés:*\n`;
-    if (productos.length > 0) {
-      msg += productos.join('\n') + '\n';
-    } else {
-      msg += '• (Ver catálogo completo)\n';
-    }
-    msg += `━━━━━━━━━━━━━━━\n`;
-    if (nota) msg += `💬 *Nota:* ${nota}\n`;
-    msg += `\n🎁 *Soy cliente nuevo — quiero el 10% de descuento + envío gratis*`;
-
-    const encoded = encodeURIComponent(msg);
-    const waUrl = `https://wa.me/573238344768?text=${encoded}`;
-
-    // Show modal
-    document.getElementById('modal-wa-btn').href = waUrl;
-    document.getElementById('modal').classList.add('active');
-
-    // Auto-open WA
-    setTimeout(() => { window.open(waUrl, '_blank'); }, 800);
-  }
-
-  // Close modal on overlay click
-  document.getElementById('modal').addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('active');
-  });
-
-  // ─── SMOOTH SCROLL ───
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-    });
-  });
-
-  // ─── NAV SCROLL EFFECT ───
-    window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) nav.style.background = 'rgba(11,26,62,0.98)';
-    else nav.style.background = 'rgba(11,26,62,0.96)';
-  });
-</script>
-
-  // ═══════════════ CALCULADORA ═══════════════
-  const PRODUCTOS = [
-    {cod:'AC-101',    nom:'ALCANCÍA',                   emp:150,  precio:1955},
-    {cod:'BPC-202',   nom:'BANDEJA CUBIERTERA',          emp:36,   precio:1445},
-    {cod:'BPG-203',   nom:'BANDEJA GRANDE',              emp:25,   precio:6375},
-    {cod:'BPJ-205',   nom:'BANDEJA JUMBO',               emp:20,   precio:13940},
-    {cod:'BPM-204',   nom:'BANDEJA MEDIANA',             emp:36,   precio:4250},
-    {cod:'BPP-201',   nom:'BANDEJA PEQUEÑA',             emp:36,   precio:1445},
-    {cod:'BTM-302',   nom:'BOTILITO 1/2 MEDIANO',        emp:300,  precio:1955},
-    {cod:'BTP-301',   nom:'BOTILITO 1/4 PEQUEÑO',        emp:500,  precio:1615},
-    {cod:'BTG-303',   nom:'BOTILITO 1L GRANDE',          emp:200,  precio:2550},
-    {cod:'CJC-103',   nom:'CAJA COCINA',                 emp:30,   precio:6545},
-    {cod:'CN42-1001', nom:'CERNIDOR #42',                emp:25,   precio:7480},
-    {cod:'CM14-402',  nom:'COLADOR MALLA #14 ORG',       emp:60,   precio:2125},
-    {cod:'CME18-404', nom:'COLADOR MALLA #18 ECO',       emp:50,   precio:1955},
-    {cod:'CMO18-403', nom:'COLADOR MALLA #18 ORIGINAL',  emp:50,   precio:2805},
-    {cod:'CM9-401',   nom:'COLADOR MALLA #9',            emp:150,  precio:935},
-    {cod:'CTE-405',   nom:'COLADOR TAZA ECO',            emp:120,  precio:2040},
-    {cod:'CT18-1003', nom:'COLADOR TELA #18',            emp:50,   precio:2890},
-    {cod:'CT9-1001',  nom:'COLADOR TELA #9',             emp:150,  precio:1445},
-    {cod:'CT14-1002', nom:'COLADOR TELA #14',            emp:60,   precio:2635},
-    {cod:'CHR-010',   nom:'CUCHARÓN',                    emp:90,   precio:935},
-    {cod:'GM-104',    nom:'GANCHO PARA MATERA',          emp:10,   precio:2635},
-    {cod:'JR2-901',   nom:'JARRA 2 LTS',                 emp:35,   precio:6375},
-    {cod:'JR5-902',   nom:'JARRA 6 LTS',                 emp:12,   precio:19635},
-    {cod:'MO12-506',  nom:'MATERA #12 ORIGINAL',         emp:300,  precio:2975},
-    {cod:'MO16-507',  nom:'MATERA #16 ORIGINAL',         emp:200,  precio:4080},
-    {cod:'MO23-508',  nom:'MATERA #23 ORIGINAL',         emp:50,   precio:5950},
-    {cod:'MC12-501',  nom:'MATERA CAMPANA #12',          emp:300,  precio:1530},
-    {cod:'MC16-502',  nom:'MATERA CAMPANA #16',          emp:200,  precio:2040},
-    {cod:'MC23-503',  nom:'MATERA CAMPANA #23',          emp:60,   precio:3740},
-    {cod:'MC2-504',   nom:'MATERA COLGAR #2',            emp:50,   precio:10200},
-    {cod:'MCO-505',   nom:'MATERA COLGAR ORIG + GANCHO', emp:50,   precio:11900},
-    {cod:'MOL-26',    nom:'MOLINILLO',                   emp:150,  precio:1615},
-    {cod:'PG-105',    nom:'PALANGANA',                   emp:1,    precio:14960},
-    {cod:'PLR-106',   nom:'PAPELERA RATTAN',             emp:10,   precio:14960},
-    {cod:'SL-601',    nom:'SALERO',                      emp:1000, precio:1190},
-    {cod:'SSB-602',   nom:'SALSERO BOMBILLO',            emp:1000, precio:1190},
-    {cod:'SSG-605',   nom:'SALSERO GRANDE',              emp:400,  precio:1530},
-    {cod:'SSJ-606',   nom:'SALSERO JUMBO',               emp:150,  precio:2550},
-    {cod:'SL1-607',   nom:'SALSERO LUJO #1',             emp:250,  precio:4590},
-    {cod:'SL2-608',   nom:'SALSERO LUJO #2',             emp:150,  precio:6800},
-    {cod:'SSM-604',   nom:'SALSERO MEDIANO',             emp:600,  precio:1360},
-    {cod:'SSM-603',   nom:'SALSERO MINI',                emp:1000, precio:1190},
-    {cod:'TPE-701',   nom:'TABLA PICAR ECONÓMICA',       emp:100,  precio:3570},
-    {cod:'TPO-702',   nom:'TABLA PICAR SILICONADA',      emp:100,  precio:5780},
-    {cod:'TZA-107',   nom:'TAZA DE AGUA',                emp:50,   precio:2380},
-    {cod:'TR5-108',   nom:'TERMO 5 LTS',                 emp:1,    precio:52360},
-  ];
-
-  const NUM_FILAS = 10;
-
-  function getDescuento(qty) {
-    if (qty >= 501) return { pct: 30, factor: 0.70, label: '30%', cls: 'dto-30' };
-    if (qty >= 101) return { pct: 25, factor: 0.75, label: '25%', cls: 'dto-25' };
-    if (qty >= 51)  return { pct: 20, factor: 0.80, label: '20%', cls: 'dto-20' };
-    if (qty >= 30)  return { pct: 15, factor: 0.85, label: '15%', cls: 'dto-15' };
-    return { pct: 0, factor: 1.00, label: '—', cls: 'dto-0' };
-  }
-
-  function fmt(n) {
-    return '$' + Math.round(n).toLocaleString('es-CO');
-  }
-
-  function buildCalcRows() {
-    const tbody = document.getElementById('calcBody');
-    tbody.innerHTML = '';
-    const opts = PRODUCTOS.map(p => `<option value="${p.cod}">${p.nom}</option>`).join('');
-    for (let i = 0; i < NUM_FILAS; i++) {
-      const tr = document.createElement('tr');
-      tr.id = 'cr' + i;
-      tr.innerHTML = `
-        <td style="color:var(--zulc-gray);font-size:12px">${i+1}</td>
-        <td><select id="csel${i}" onchange="calcRow(${i})"><option value="">— Seleccionar —</option>${opts}</select></td>
-        <td id="cemp${i}" style="color:var(--zulc-gray);font-size:12px;text-align:center">—</td>
-        <td>
-          <input type="number" id="cqty${i}" min="0" placeholder="0" oninput="calcRow(${i})">
-          <span class="calc-warn-txt" id="cwrn${i}"></span>
-        </td>
-        <td><span class="dto-badge dto-0" id="cdto${i}">—</span></td>
-        <td class="precio-cell" id="cpunit${i}">—</td>
-        <td class="iva-cell" id="cneto${i}">—</td>
-        <td class="iva-cell" id="civa${i}">—</td>
-        <td class="total-cell" id="ctot${i}">—</td>
-      `;
-      tbody.appendChild(tr);
-    }
-  }
-
-  function calcRow(i) {
-    const sel = document.getElementById('csel' + i);
-    const qtyEl = document.getElementById('cqty' + i);
-    const cod = sel.value;
-    const qty = parseInt(qtyEl.value) || 0;
-
-    const empEl   = document.getElementById('cemp' + i);
-    const dtoEl   = document.getElementById('cdto' + i);
-    const punitEl = document.getElementById('cpunit' + i);
-    const netoEl  = document.getElementById('cneto' + i);
-    const ivaEl   = document.getElementById('civa' + i);
-    const totEl   = document.getElementById('ctot' + i);
-    const wrnEl   = document.getElementById('cwrn' + i);
-
-    qtyEl.classList.remove('warn');
-    wrnEl.textContent = '';
-
-    if (!cod || qty <= 0) {
-      empEl.textContent = '—'; dtoEl.textContent = '—'; dtoEl.className = 'dto-badge dto-0';
-      punitEl.textContent = '—'; netoEl.textContent = '—'; ivaEl.textContent = '—'; totEl.textContent = '—';
-      calcTotals(); return;
-    }
-
-    const prod = PRODUCTOS.find(p => p.cod === cod);
-    if (!prod) return;
-
-    empEl.textContent = prod.emp === 1 ? 'und' : prod.emp + ' und';
-
-    // Validar múltiplo
-    if (prod.emp > 1 && qty % prod.emp !== 0) {
-      qtyEl.classList.add('warn');
-      wrnEl.textContent = '⚠ múltiplo de ' + prod.emp;
-      punitEl.textContent = '—'; netoEl.textContent = '—'; ivaEl.textContent = '—'; totEl.textContent = '—';
-      dtoEl.textContent = '—'; dtoEl.className = 'dto-badge dto-0';
-      calcTotals(); return;
-    }
-
-    const dto = getDescuento(qty);
-    const pUnit = Math.round(prod.precio * dto.factor);
-    const neto  = Math.round(pUnit * qty / 1.19);
-    const iva   = Math.round(neto * 0.19);
-    const total = neto + iva;
-
-    dtoEl.textContent = dto.label; dtoEl.className = 'dto-badge ' + dto.cls;
-    punitEl.textContent = fmt(pUnit);
-    netoEl.textContent  = fmt(neto);
-    ivaEl.textContent   = fmt(iva);
-    totEl.textContent   = fmt(total);
-
-    calcTotals();
-  }
-
-  function calcTotals() {
-    let sumNeto = 0, sumIva = 0, sumTotal = 0;
-    for (let i = 0; i < NUM_FILAS; i++) {
-      const sel = document.getElementById('csel' + i);
-      const qtyEl = document.getElementById('cqty' + i);
-      const cod = sel ? sel.value : '';
-      const qty = parseInt(qtyEl ? qtyEl.value : 0) || 0;
-      if (!cod || qty <= 0) continue;
-      const prod = PRODUCTOS.find(p => p.cod === cod);
-      if (!prod) continue;
-      if (prod.emp > 1 && qty % prod.emp !== 0) continue;
-      const dto = getDescuento(qty);
-      const pUnit = Math.round(prod.precio * dto.factor);
-      const neto  = Math.round(pUnit * qty / 1.19);
-      const iva   = Math.round(neto * 0.19);
-      sumNeto  += neto;
-      sumIva   += iva;
-      sumTotal += neto + iva;
-    }
-    document.getElementById('ctNeto').textContent  = fmt(sumNeto);
-    document.getElementById('ctIva').textContent   = fmt(sumIva);
-    document.getElementById('ctTotal').textContent = fmt(sumTotal);
-  }
-
-  function resetCalc() {
-    buildCalcRows();
-    document.getElementById('ctNeto').textContent  = '$0';
-    document.getElementById('ctIva').textContent   = '$0';
-    document.getElementById('ctTotal').textContent = '$0';
-  }
-
-  function abrirCalculadora(productoNom) {
-    document.getElementById('calcModal').classList.add('active');
-    if (productoNom) {
-      // Pre-seleccionar el producto en la primera fila vacía
-      const prod = PRODUCTOS.find(p => p.nom.toLowerCase().includes(productoNom.toLowerCase()));
-      if (prod) {
-        const sel = document.getElementById('csel0');
-        if (sel) { sel.value = prod.cod; calcRow(0); }
-      }
-    }
-  }
-
-  function enviarCalculadora() {
-    const total = document.getElementById('ctTotal').textContent;
-    if (total === '$0') { alert('Agrega al menos un producto con cantidad.'); return; }
-
-    let lineas = [];
-    for (let i = 0; i < NUM_FILAS; i++) {
-      const sel = document.getElementById('csel' + i);
-      const qtyEl = document.getElementById('cqty' + i);
-      const cod = sel ? sel.value : '';
-      const qty = parseInt(qtyEl ? qtyEl.value : 0) || 0;
-      if (!cod || qty <= 0) continue;
-      const prod = PRODUCTOS.find(p => p.cod === cod);
-      if (!prod) continue;
-      if (prod.emp > 1 && qty % prod.emp !== 0) continue;
-      const dto = getDescuento(qty);
-      const pUnit = Math.round(prod.precio * dto.factor);
-      const neto  = Math.round(pUnit * qty / 1.19);
-      const iva   = Math.round(neto * 0.19);
-      const tot   = neto + iva;
-      lineas.push(`• ${prod.nom} x${qty} und → ${fmt(pUnit)}/und → Total: ${fmt(tot)} (dto ${dto.label})`);
-    }
-
-    const neto  = document.getElementById('ctNeto').textContent;
-    const iva   = document.getElementById('ctIva').textContent;
-
-    let msg = `Hola ZulcPlast! 👋\n\n`;
-    msg += `*Cotización calculada desde la web*\n`;
-    msg += `━━━━━━━━━━━━━━━\n`;
-    msg += `📦 *Pedido:*\n` + lineas.join('\n') + '\n';
-    msg += `━━━━━━━━━━━━━━━\n`;
-    msg += `🧾 Subtotal sin IVA: ${neto}\n`;
-    msg += `🧾 IVA 19%: ${iva}\n`;
-    msg += `💰 *TOTAL con IVA: ${total}*\n`;
-    msg += `━━━━━━━━━━━━━━━\n`;
-    msg += `🎁 Soy cliente nuevo — quiero el *10% de descuento + envío gratis*`;
-
-    const url = `https://wa.me/573238344768?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
-  }
-
-  // Inicializar calculadora al cargar
-  document.addEventListener('DOMContentLoaded', function() {
-    buildCalcRows();
-  });
-
-  // Cerrar modal al hacer clic fuera
-  document.getElementById('calcModal').addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('active');
-  });
-
-
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <!-- ═══════════════ CALCULADORA MODAL ═══════════════ -->
 <div class="calc-overlay" id="calcModal">
   <div class="calc-modal">
@@ -1944,6 +1599,205 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  // ─── FILTER PRODUCTS ───
+  function filterProducts(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.producto-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+
+  // ─── NAV SCROLL EFFECT ───
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (nav) nav.style.background = window.scrollY > 50 ? 'rgba(11,26,62,0.98)' : 'rgba(11,26,62,0.96)';
+  });
+
+  // ─── SMOOTH SCROLL ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // ═══════════════ CALCULADORA ═══════════════
+  const PRODUCTOS = [
+    {cod:'AC-101',    nom:'ALCANCÍA',                   emp:150,  precio:1955},
+    {cod:'BPC-202',   nom:'BANDEJA CUBIERTERA',          emp:36,   precio:1445},
+    {cod:'BPG-203',   nom:'BANDEJA GRANDE',              emp:25,   precio:6375},
+    {cod:'BPJ-205',   nom:'BANDEJA JUMBO',               emp:20,   precio:13940},
+    {cod:'BPM-204',   nom:'BANDEJA MEDIANA',             emp:36,   precio:4250},
+    {cod:'BPP-201',   nom:'BANDEJA PEQUEÑA',             emp:36,   precio:1445},
+    {cod:'BTM-302',   nom:'BOTILITO 1/2 MEDIANO',        emp:300,  precio:1955},
+    {cod:'BTP-301',   nom:'BOTILITO 1/4 PEQUEÑO',        emp:500,  precio:1615},
+    {cod:'BTG-303',   nom:'BOTILITO 1L GRANDE',          emp:200,  precio:2550},
+    {cod:'CJC-103',   nom:'CAJA COCINA',                 emp:30,   precio:6545},
+    {cod:'CN42-1001', nom:'CERNIDOR #42',                emp:25,   precio:7480},
+    {cod:'CM14-402',  nom:'COLADOR MALLA #14 ORG',       emp:60,   precio:2125},
+    {cod:'CME18-404', nom:'COLADOR MALLA #18 ECO',       emp:50,   precio:1955},
+    {cod:'CMO18-403', nom:'COLADOR MALLA #18 ORIGINAL',  emp:50,   precio:2805},
+    {cod:'CM9-401',   nom:'COLADOR MALLA #9',            emp:150,  precio:935},
+    {cod:'CTE-405',   nom:'COLADOR TAZA ECO',            emp:120,  precio:2040},
+    {cod:'CT18-1003', nom:'COLADOR TELA #18',            emp:50,   precio:2890},
+    {cod:'CT9-1001',  nom:'COLADOR TELA #9',             emp:150,  precio:1445},
+    {cod:'CT14-1002', nom:'COLADOR TELA #14',            emp:60,   precio:2635},
+    {cod:'CHR-010',   nom:'CUCHARÓN',                    emp:90,   precio:935},
+    {cod:'GM-104',    nom:'GANCHO PARA MATERA',          emp:10,   precio:2635},
+    {cod:'JR2-901',   nom:'JARRA 2 LTS',                 emp:35,   precio:6375},
+    {cod:'JR5-902',   nom:'JARRA 6 LTS',                 emp:12,   precio:19635},
+    {cod:'MO12-506',  nom:'MATERA #12 ORIGINAL',         emp:300,  precio:2975},
+    {cod:'MO16-507',  nom:'MATERA #16 ORIGINAL',         emp:200,  precio:4080},
+    {cod:'MO23-508',  nom:'MATERA #23 ORIGINAL',         emp:50,   precio:5950},
+    {cod:'MC12-501',  nom:'MATERA CAMPANA #12',          emp:300,  precio:1530},
+    {cod:'MC16-502',  nom:'MATERA CAMPANA #16',          emp:200,  precio:2040},
+    {cod:'MC23-503',  nom:'MATERA CAMPANA #23',          emp:60,   precio:3740},
+    {cod:'MC2-504',   nom:'MATERA COLGAR #2',            emp:50,   precio:10200},
+    {cod:'MCO-505',   nom:'MATERA COLGAR ORIG + GANCHO', emp:50,   precio:11900},
+    {cod:'MOL-26',    nom:'MOLINILLO',                   emp:150,  precio:1615},
+    {cod:'PG-105',    nom:'PALANGANA',                   emp:1,    precio:14960},
+    {cod:'PLR-106',   nom:'PAPELERA RATTAN',             emp:10,   precio:14960},
+    {cod:'SL-601',    nom:'SALERO',                      emp:1000, precio:1190},
+    {cod:'SSB-602',   nom:'SALSERO BOMBILLO',            emp:1000, precio:1190},
+    {cod:'SSG-605',   nom:'SALSERO GRANDE',              emp:400,  precio:1530},
+    {cod:'SSJ-606',   nom:'SALSERO JUMBO',               emp:150,  precio:2550},
+    {cod:'SL1-607',   nom:'SALSERO LUJO #1',             emp:250,  precio:4590},
+    {cod:'SL2-608',   nom:'SALSERO LUJO #2',             emp:150,  precio:6800},
+    {cod:'SSM-604',   nom:'SALSERO MEDIANO',             emp:600,  precio:1360},
+    {cod:'SSM-603',   nom:'SALSERO MINI',                emp:1000, precio:1190},
+    {cod:'TPE-701',   nom:'TABLA PICAR ECONÓMICA',       emp:100,  precio:3570},
+    {cod:'TPO-702',   nom:'TABLA PICAR SILICONADA',      emp:100,  precio:5780},
+    {cod:'TZA-107',   nom:'TAZA DE AGUA',                emp:50,   precio:2380},
+    {cod:'TR5-108',   nom:'TERMO 5 LTS',                 emp:1,    precio:52360},
+  ];
+
+  const NUM_FILAS = 10;
+
+  function getDescuento(qty) {
+    if (qty >= 501) return {pct:30, factor:0.70, label:'30%', cls:'dto-30'};
+    if (qty >= 101) return {pct:25, factor:0.75, label:'25%', cls:'dto-25'};
+    if (qty >= 51)  return {pct:20, factor:0.80, label:'20%', cls:'dto-20'};
+    if (qty >= 30)  return {pct:15, factor:0.85, label:'15%', cls:'dto-15'};
+    return {pct:0, factor:1.00, label:'—', cls:'dto-0'};
+  }
+
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('es-CO'); }
+
+  function buildCalcRows() {
+    const tbody = document.getElementById('calcBody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    const opts = PRODUCTOS.map(p => `<option value="${p.cod}">${p.nom}</option>`).join('');
+    for (let i = 0; i < NUM_FILAS; i++) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="color:var(--zulc-gray);font-size:12px">${i+1}</td>
+        <td><select id="csel${i}" onchange="calcRow(${i})"><option value="">— Seleccionar —</option>${opts}</select></td>
+        <td id="cemp${i}" style="color:var(--zulc-gray);font-size:12px;text-align:center">—</td>
+        <td>
+          <input type="number" id="cqty${i}" min="0" placeholder="0" oninput="calcRow(${i})">
+          <span class="calc-warn-txt" id="cwrn${i}"></span>
+        </td>
+        <td><span class="dto-badge dto-0" id="cdto${i}">—</span></td>
+        <td class="precio-cell" id="cpunit${i}">—</td>
+        <td class="iva-cell" id="cneto${i}">—</td>
+        <td class="iva-cell" id="civa${i}">—</td>
+        <td class="total-cell" id="ctot${i}">—</td>`;
+      tbody.appendChild(tr);
+    }
+  }
+
+  function calcRow(i) {
+    const sel = document.getElementById('csel'+i);
+    const qtyEl = document.getElementById('cqty'+i);
+    const cod = sel.value, qty = parseInt(qtyEl.value)||0;
+    const empEl=document.getElementById('cemp'+i), dtoEl=document.getElementById('cdto'+i);
+    const punitEl=document.getElementById('cpunit'+i), netoEl=document.getElementById('cneto'+i);
+    const ivaEl=document.getElementById('civa'+i), totEl=document.getElementById('ctot'+i);
+    const wrnEl=document.getElementById('cwrn'+i);
+    qtyEl.classList.remove('warn'); wrnEl.textContent='';
+    if (!cod||qty<=0) {
+      [empEl,dtoEl,punitEl,netoEl,ivaEl,totEl].forEach(el=>{if(el)el.textContent='—'});
+      if(dtoEl)dtoEl.className='dto-badge dto-0'; calcTotals(); return;
+    }
+    const prod = PRODUCTOS.find(p=>p.cod===cod);
+    if (!prod) return;
+    empEl.textContent = prod.emp===1?'und':prod.emp+' und';
+    if (prod.emp>1 && qty%prod.emp!==0) {
+      qtyEl.classList.add('warn'); wrnEl.textContent='⚠ múltiplo de '+prod.emp;
+      [punitEl,netoEl,ivaEl,totEl].forEach(el=>{if(el)el.textContent='—'});
+      dtoEl.textContent='—'; dtoEl.className='dto-badge dto-0'; calcTotals(); return;
+    }
+    const dto=getDescuento(qty), pUnit=Math.round(prod.precio*dto.factor);
+    const neto=Math.round(pUnit*qty/1.19), iva=Math.round(neto*0.19), total=neto+iva;
+    dtoEl.textContent=dto.label; dtoEl.className='dto-badge '+dto.cls;
+    punitEl.textContent=fmt(pUnit); netoEl.textContent=fmt(neto);
+    ivaEl.textContent=fmt(iva); totEl.textContent=fmt(total);
+    calcTotals();
+  }
+
+  function calcTotals() {
+    let sN=0,sI=0,sT=0;
+    for (let i=0;i<NUM_FILAS;i++) {
+      const sel=document.getElementById('csel'+i), qEl=document.getElementById('cqty'+i);
+      const cod=sel?sel.value:'', qty=parseInt(qEl?qEl.value:0)||0;
+      if (!cod||qty<=0) continue;
+      const prod=PRODUCTOS.find(p=>p.cod===cod); if (!prod) continue;
+      if (prod.emp>1&&qty%prod.emp!==0) continue;
+      const dto=getDescuento(qty), pU=Math.round(prod.precio*dto.factor);
+      const neto=Math.round(pU*qty/1.19), iva=Math.round(neto*0.19);
+      sN+=neto; sI+=iva; sT+=neto+iva;
+    }
+    document.getElementById('ctNeto').textContent=fmt(sN);
+    document.getElementById('ctIva').textContent=fmt(sI);
+    document.getElementById('ctTotal').textContent=fmt(sT);
+  }
+
+  function resetCalc() {
+    buildCalcRows();
+    ['ctNeto','ctIva','ctTotal'].forEach(id=>{document.getElementById(id).textContent='$0';});
+  }
+
+  function abrirCalculadora(productoNom) {
+    const modal = document.getElementById('calcModal');
+    if (!modal) return;
+    modal.classList.add('active');
+    if (productoNom) {
+      const prod = PRODUCTOS.find(p=>p.nom.toLowerCase().includes(productoNom.toLowerCase().split(' ')[0].toLowerCase()));
+      if (prod) { const sel=document.getElementById('csel0'); if(sel){sel.value=prod.cod; calcRow(0);} }
+    }
+  }
+
+  function enviarCalculadora() {
+    const total=document.getElementById('ctTotal').textContent;
+    if (total==='$0') { alert('Agrega al menos un producto con cantidad.'); return; }
+    let lineas=[];
+    for (let i=0;i<NUM_FILAS;i++) {
+      const sel=document.getElementById('csel'+i), qEl=document.getElementById('cqty'+i);
+      const cod=sel?sel.value:'', qty=parseInt(qEl?qEl.value:0)||0;
+      if (!cod||qty<=0) continue;
+      const prod=PRODUCTOS.find(p=>p.cod===cod); if (!prod) continue;
+      if (prod.emp>1&&qty%prod.emp!==0) continue;
+      const dto=getDescuento(qty), pU=Math.round(prod.precio*dto.factor);
+      const neto=Math.round(pU*qty/1.19), iva=Math.round(neto*0.19), tot=neto+iva;
+      lineas.push(`• ${prod.nom} x${qty} → ${fmt(pU)}/und → Total: ${fmt(tot)} (dto ${dto.label})`);
+    }
+    const neto=document.getElementById('ctNeto').textContent, iva=document.getElementById('ctIva').textContent;
+    let msg=`Hola ZulcPlast! 👋\n\n*Cotización desde la web*\n━━━━━━━━━━━━━━━\n📦 *Pedido:*\n`+lineas.join('\n')+'\n━━━━━━━━━━━━━━━\n';
+    msg+=`Subtotal sin IVA: ${neto}\nIVA 19%: ${iva}\n💰 *TOTAL: ${total}*\n━━━━━━━━━━━━━━━\n🎁 Soy cliente nuevo — quiero el *10% descuento + envío gratis*`;
+    window.open(`https://wa.me/573238344768?text=${encodeURIComponent(msg)}`,'_blank');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    buildCalcRows();
+    const modal=document.getElementById('calcModal');
+    if (modal) modal.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active');});
+  });
+</script>
 
 </body>
 </html>
