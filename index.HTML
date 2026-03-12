@@ -724,6 +724,112 @@
     .footer-top > div:first-child { grid-column: auto; }
     .hero-product-grid { grid-template-columns: 1fr 1fr; }
   }
+
+  /* ─── CALCULADORA MODAL ─── */
+  .calc-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(11,26,62,0.85); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 16px;
+  }
+  .calc-overlay.active { display: flex; }
+  .calc-modal {
+    background: #fff; border-radius: 20px; width: 100%; max-width: 960px;
+    max-height: 92vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    position: relative;
+  }
+  .calc-header {
+    background: var(--zulc-dark); color: #fff;
+    padding: 24px 32px; border-radius: 20px 20px 0 0;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .calc-header h2 { font-family: var(--font-display); font-size: 26px; color: var(--zulc-yellow); }
+  .calc-header p { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+  .calc-close {
+    background: rgba(255,255,255,0.1); border: none; color: #fff;
+    width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+    font-size: 18px; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .calc-close:hover { background: rgba(255,255,255,0.25); }
+  .calc-body { padding: 24px 32px; }
+  .descuento-info {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+  }
+  .desc-badge {
+    background: var(--zulc-light); border: 1px solid var(--zulc-border);
+    border-radius: 8px; padding: 8px 14px; font-size: 12px; color: var(--zulc-dark);
+    font-weight: 600;
+  }
+  .desc-badge span { color: var(--zulc-orange); }
+  .calc-table-wrap { overflow-x: auto; margin-bottom: 20px; }
+  .calc-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .calc-table th {
+    background: var(--zulc-dark); color: var(--zulc-yellow);
+    padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.05em; white-space: nowrap;
+  }
+  .calc-table td { padding: 9px 12px; border-bottom: 1px solid var(--zulc-border); vertical-align: middle; }
+  .calc-table tr:hover td { background: var(--zulc-light); }
+  .calc-table select {
+    border: 1.5px solid var(--zulc-border); border-radius: 6px;
+    padding: 6px 8px; font-size: 13px; width: 100%; min-width: 160px;
+    background: #fff; cursor: pointer;
+  }
+  .calc-table select:focus { outline: none; border-color: var(--zulc-blue); }
+  .calc-table input[type=number] {
+    border: 1.5px solid var(--zulc-border); border-radius: 6px;
+    padding: 6px 8px; font-size: 13px; width: 90px; text-align: center;
+  }
+  .calc-table input[type=number]:focus { outline: none; border-color: var(--zulc-blue); }
+  .calc-table input.warn { border-color: #e74c3c; background: #fff5f5; }
+  .calc-warn-txt { color: #e74c3c; font-size: 11px; display: block; margin-top: 2px; }
+  .precio-cell { font-weight: 700; color: var(--zulc-blue); }
+  .total-cell { font-weight: 700; color: var(--zulc-dark); }
+  .iva-cell { color: var(--zulc-gray); font-size: 12px; }
+  .dto-badge {
+    display: inline-block; padding: 2px 8px; border-radius: 20px;
+    font-size: 11px; font-weight: 700;
+  }
+  .dto-0 { background: #f0f0f0; color: #888; }
+  .dto-15 { background: #fff3cd; color: #856404; }
+  .dto-20 { background: #d1ecf1; color: #0c5460; }
+  .dto-25 { background: #d4edda; color: #155724; }
+  .dto-30 { background: #1B2B6B; color: #F5C800; }
+  .calc-footer {
+    background: var(--zulc-light); border-radius: 12px;
+    padding: 20px 24px; margin-bottom: 20px;
+    display: flex; gap: 32px; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  }
+  .calc-totals { display: flex; gap: 24px; flex-wrap: wrap; }
+  .calc-total-item label { font-size: 11px; color: var(--zulc-gray); text-transform: uppercase; letter-spacing: 0.05em; display: block; }
+  .calc-total-item .val { font-size: 22px; font-weight: 700; color: var(--zulc-dark); }
+  .calc-total-item.highlight .val { color: var(--zulc-orange); font-size: 28px; }
+  .calc-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-calc-wa {
+    background: #25D366; color: #fff; border: none; border-radius: 10px;
+    padding: 14px 28px; font-size: 15px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; gap: 8px; transition: background 0.2s;
+  }
+  .btn-calc-wa:hover { background: #1ebe59; }
+  .btn-calc-reset {
+    background: transparent; color: var(--zulc-gray); border: 1.5px solid var(--zulc-border);
+    border-radius: 10px; padding: 14px 20px; font-size: 14px; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-calc-reset:hover { border-color: var(--zulc-blue); color: var(--zulc-blue); }
+  .calc-nota {
+    font-size: 12px; color: var(--zulc-gray); text-align: center; margin-top: 8px;
+  }
+  @media (max-width: 600px) {
+    .calc-body { padding: 16px; }
+    .calc-header { padding: 18px; }
+    .calc-footer { flex-direction: column; }
+    .calc-totals { gap: 16px; }
+  }
+
 </style>
 </head>
 <body>
@@ -738,7 +844,7 @@
     <a href="#categorias">Productos</a>
     <a href="#como-funciona">¿Cómo comprar?</a>
     <a href="#zonas">Cobertura</a>
-    <a href="#cotizar" class="nav-cta">Cotizar Ahora →</a>
+    <a href="#" onclick="event.preventDefault();abrirCalculadora('')" class="nav-cta">Cotizar Ahora →</a>
   </div>
 </nav>
 
@@ -772,7 +878,7 @@
       </div>
     </div>
     <div class="hero-actions">
-      <a href="#cotizar" class="btn-primary">Solicitar Cotización →</a>
+      <a href="#" onclick="event.preventDefault();abrirCalculadora('')" class="btn-primary">Solicitar Cotización →</a>
       <a href="#categorias" class="btn-outline">Ver Catálogo</a>
     </div>
   </div>
@@ -887,7 +993,7 @@
         <div class="producto-desc">Colador plástico con malla metálica. Disponible en 3 tamaños. Alta rotación en tiendas.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Colador Malla (#9, #14, #18)')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Colador Malla (#9, #14, #18)')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -907,7 +1013,7 @@
         <div class="producto-desc">Colador con forma de taza, ideal para filtrar jugos y caldos. Perfecto para restaurantes.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Colador Taza')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Colador Taza')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -924,7 +1030,7 @@
         <div class="producto-desc">Malla en tela extra fina, especial para café o colado extra fino. Referencia única en el mercado.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Colador Tela (#9, #14, #18)')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Colador Tela (#9, #14, #18)')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -946,7 +1052,7 @@
         <div class="producto-desc">Cucharon resistente para cocina. Alta demanda en tiendas de barrio y mercados populares.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Cucharon')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Cucharon')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -966,7 +1072,7 @@
         <div class="producto-desc">Bowl cernidor plástico de gran capacidad. Ideal para cocinas y restaurantes de alto volumen.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Cernidor')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Cernidor')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -987,7 +1093,7 @@
         <div class="producto-desc">Grande, mediano, pequeño, bombillo, lujo #1 y #2, jumbo. La línea más completa del mercado.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Salseros (Clásica y Lujo)')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Salseros (Clásica y Lujo)')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1009,7 +1115,7 @@
         <div class="producto-desc">4 tamaños: pequeña, mediana, grande y jumbo. 6 colores. Ideales para restaurantes y cafeterías.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Bandejas')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Bandejas')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1031,7 +1137,7 @@
         <div class="producto-desc">Palangana plástica de alta resistencia. Producto de altísima rotación en tiendas de barrio.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Palangana')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Palangana')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1051,7 +1157,7 @@
         <div class="producto-desc">Taza plástica multiuso para agua. Colores vivos y resistente. Gran rotación.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Taza para Agua')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Taza para Agua')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1071,7 +1177,7 @@
         <div class="producto-desc">Basurera diseño ratán 10 litros con tapa. Estética moderna a precio mayorista.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Basurera Ratan 10Lt')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Basurera Ratan 10Lt')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1092,7 +1198,7 @@
         <div class="producto-desc">Tabla de picar plástica con asa. Varios colores. La versión ORG incluye diseño especial.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Tabla de Picar')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Tabla de Picar')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1114,7 +1220,7 @@
         <div class="producto-desc">Materas plásticas estilo maceta, de colgar y ganchos. Colores naturales. Alta rotación primavera.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Materas')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Materas')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1133,7 +1239,7 @@
         <div class="producto-desc">Jarras plásticas de 2 y 6 litros. Transparentes con tapa de color. Ideales para restaurantes.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Jarras (2Lt y 6Lt)')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Jarras (2Lt y 6Lt)')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1155,7 +1261,7 @@
         <div class="producto-desc">Termo plástico aislado con grifo. 5 litros. Perfecto para fiestas, eventos y oficinas.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Termo 5 Lts')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Termo 5 Lts')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1174,7 +1280,7 @@
         <div class="producto-desc">Botilitos deportivos en 3 tamaños. Muy populares en colegios, gimnasios y tiendas de barrio.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Botilitos')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Botilitos')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1194,7 +1300,7 @@
         <div class="producto-desc">Alcancía plástica forma cerdito. Gran rotación en tiendas de variedades y misceláneas.</div>
         <div class="producto-footer">
           <div class="producto-min">Mínimo <span>50 uds</span></div>
-          <button class="btn-cotizar" onclick="addToQuote('Alcancía Cerdito')">+ Cotizar</button>
+          <button class="btn-cotizar" onclick="abrirCalculadora('Alcancía Cerdito')">+ Cotizar</button>
         </div>
       </div>
     </div>
@@ -1458,7 +1564,7 @@
     for (const cb of checkboxes) {
       if (cb.value === productName) {
         cb.checked = true;
-        document.getElementById('cotizar').scrollIntoView({ behavior: 'smooth' });
+        abrirCalculadora('');
         // Highlight the form card
         const card = document.querySelector('.form-card');
         card.style.borderColor = 'var(--zulc-yellow)';
@@ -1471,7 +1577,7 @@
       }
     }
     // Not found → just scroll and note
-    document.getElementById('cotizar').scrollIntoView({ behavior: 'smooth' });
+    abrirCalculadora('');
   }
 
   // ─── SEND QUOTE VIA WHATSAPP ───
@@ -1542,4 +1648,302 @@
   });
 
   // ─── NAV SCROLL EFFECT ───
-  window.addEventListener('scro
+    window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) nav.style.background = 'rgba(11,26,62,0.98)';
+    else nav.style.background = 'rgba(11,26,62,0.96)';
+  });
+</script>
+
+  // ═══════════════ CALCULADORA ═══════════════
+  const PRODUCTOS = [
+    {cod:'AC-101',    nom:'ALCANCÍA',                   emp:150,  precio:1955},
+    {cod:'BPC-202',   nom:'BANDEJA CUBIERTERA',          emp:36,   precio:1445},
+    {cod:'BPG-203',   nom:'BANDEJA GRANDE',              emp:25,   precio:6375},
+    {cod:'BPJ-205',   nom:'BANDEJA JUMBO',               emp:20,   precio:13940},
+    {cod:'BPM-204',   nom:'BANDEJA MEDIANA',             emp:36,   precio:4250},
+    {cod:'BPP-201',   nom:'BANDEJA PEQUEÑA',             emp:36,   precio:1445},
+    {cod:'BTM-302',   nom:'BOTILITO 1/2 MEDIANO',        emp:300,  precio:1955},
+    {cod:'BTP-301',   nom:'BOTILITO 1/4 PEQUEÑO',        emp:500,  precio:1615},
+    {cod:'BTG-303',   nom:'BOTILITO 1L GRANDE',          emp:200,  precio:2550},
+    {cod:'CJC-103',   nom:'CAJA COCINA',                 emp:30,   precio:6545},
+    {cod:'CN42-1001', nom:'CERNIDOR #42',                emp:25,   precio:7480},
+    {cod:'CM14-402',  nom:'COLADOR MALLA #14 ORG',       emp:60,   precio:2125},
+    {cod:'CME18-404', nom:'COLADOR MALLA #18 ECO',       emp:50,   precio:1955},
+    {cod:'CMO18-403', nom:'COLADOR MALLA #18 ORIGINAL',  emp:50,   precio:2805},
+    {cod:'CM9-401',   nom:'COLADOR MALLA #9',            emp:150,  precio:935},
+    {cod:'CTE-405',   nom:'COLADOR TAZA ECO',            emp:120,  precio:2040},
+    {cod:'CT18-1003', nom:'COLADOR TELA #18',            emp:50,   precio:2890},
+    {cod:'CT9-1001',  nom:'COLADOR TELA #9',             emp:150,  precio:1445},
+    {cod:'CT14-1002', nom:'COLADOR TELA #14',            emp:60,   precio:2635},
+    {cod:'CHR-010',   nom:'CUCHARÓN',                    emp:90,   precio:935},
+    {cod:'GM-104',    nom:'GANCHO PARA MATERA',          emp:10,   precio:2635},
+    {cod:'JR2-901',   nom:'JARRA 2 LTS',                 emp:35,   precio:6375},
+    {cod:'JR5-902',   nom:'JARRA 6 LTS',                 emp:12,   precio:19635},
+    {cod:'MO12-506',  nom:'MATERA #12 ORIGINAL',         emp:300,  precio:2975},
+    {cod:'MO16-507',  nom:'MATERA #16 ORIGINAL',         emp:200,  precio:4080},
+    {cod:'MO23-508',  nom:'MATERA #23 ORIGINAL',         emp:50,   precio:5950},
+    {cod:'MC12-501',  nom:'MATERA CAMPANA #12',          emp:300,  precio:1530},
+    {cod:'MC16-502',  nom:'MATERA CAMPANA #16',          emp:200,  precio:2040},
+    {cod:'MC23-503',  nom:'MATERA CAMPANA #23',          emp:60,   precio:3740},
+    {cod:'MC2-504',   nom:'MATERA COLGAR #2',            emp:50,   precio:10200},
+    {cod:'MCO-505',   nom:'MATERA COLGAR ORIG + GANCHO', emp:50,   precio:11900},
+    {cod:'MOL-26',    nom:'MOLINILLO',                   emp:150,  precio:1615},
+    {cod:'PG-105',    nom:'PALANGANA',                   emp:1,    precio:14960},
+    {cod:'PLR-106',   nom:'PAPELERA RATTAN',             emp:10,   precio:14960},
+    {cod:'SL-601',    nom:'SALERO',                      emp:1000, precio:1190},
+    {cod:'SSB-602',   nom:'SALSERO BOMBILLO',            emp:1000, precio:1190},
+    {cod:'SSG-605',   nom:'SALSERO GRANDE',              emp:400,  precio:1530},
+    {cod:'SSJ-606',   nom:'SALSERO JUMBO',               emp:150,  precio:2550},
+    {cod:'SL1-607',   nom:'SALSERO LUJO #1',             emp:250,  precio:4590},
+    {cod:'SL2-608',   nom:'SALSERO LUJO #2',             emp:150,  precio:6800},
+    {cod:'SSM-604',   nom:'SALSERO MEDIANO',             emp:600,  precio:1360},
+    {cod:'SSM-603',   nom:'SALSERO MINI',                emp:1000, precio:1190},
+    {cod:'TPE-701',   nom:'TABLA PICAR ECONÓMICA',       emp:100,  precio:3570},
+    {cod:'TPO-702',   nom:'TABLA PICAR SILICONADA',      emp:100,  precio:5780},
+    {cod:'TZA-107',   nom:'TAZA DE AGUA',                emp:50,   precio:2380},
+    {cod:'TR5-108',   nom:'TERMO 5 LTS',                 emp:1,    precio:52360},
+  ];
+
+  const NUM_FILAS = 10;
+
+  function getDescuento(qty) {
+    if (qty >= 501) return { pct: 30, factor: 0.70, label: '30%', cls: 'dto-30' };
+    if (qty >= 101) return { pct: 25, factor: 0.75, label: '25%', cls: 'dto-25' };
+    if (qty >= 51)  return { pct: 20, factor: 0.80, label: '20%', cls: 'dto-20' };
+    if (qty >= 30)  return { pct: 15, factor: 0.85, label: '15%', cls: 'dto-15' };
+    return { pct: 0, factor: 1.00, label: '—', cls: 'dto-0' };
+  }
+
+  function fmt(n) {
+    return '$' + Math.round(n).toLocaleString('es-CO');
+  }
+
+  function buildCalcRows() {
+    const tbody = document.getElementById('calcBody');
+    tbody.innerHTML = '';
+    const opts = PRODUCTOS.map(p => `<option value="${p.cod}">${p.nom}</option>`).join('');
+    for (let i = 0; i < NUM_FILAS; i++) {
+      const tr = document.createElement('tr');
+      tr.id = 'cr' + i;
+      tr.innerHTML = `
+        <td style="color:var(--zulc-gray);font-size:12px">${i+1}</td>
+        <td><select id="csel${i}" onchange="calcRow(${i})"><option value="">— Seleccionar —</option>${opts}</select></td>
+        <td id="cemp${i}" style="color:var(--zulc-gray);font-size:12px;text-align:center">—</td>
+        <td>
+          <input type="number" id="cqty${i}" min="0" placeholder="0" oninput="calcRow(${i})">
+          <span class="calc-warn-txt" id="cwrn${i}"></span>
+        </td>
+        <td><span class="dto-badge dto-0" id="cdto${i}">—</span></td>
+        <td class="precio-cell" id="cpunit${i}">—</td>
+        <td class="iva-cell" id="cneto${i}">—</td>
+        <td class="iva-cell" id="civa${i}">—</td>
+        <td class="total-cell" id="ctot${i}">—</td>
+      `;
+      tbody.appendChild(tr);
+    }
+  }
+
+  function calcRow(i) {
+    const sel = document.getElementById('csel' + i);
+    const qtyEl = document.getElementById('cqty' + i);
+    const cod = sel.value;
+    const qty = parseInt(qtyEl.value) || 0;
+
+    const empEl   = document.getElementById('cemp' + i);
+    const dtoEl   = document.getElementById('cdto' + i);
+    const punitEl = document.getElementById('cpunit' + i);
+    const netoEl  = document.getElementById('cneto' + i);
+    const ivaEl   = document.getElementById('civa' + i);
+    const totEl   = document.getElementById('ctot' + i);
+    const wrnEl   = document.getElementById('cwrn' + i);
+
+    qtyEl.classList.remove('warn');
+    wrnEl.textContent = '';
+
+    if (!cod || qty <= 0) {
+      empEl.textContent = '—'; dtoEl.textContent = '—'; dtoEl.className = 'dto-badge dto-0';
+      punitEl.textContent = '—'; netoEl.textContent = '—'; ivaEl.textContent = '—'; totEl.textContent = '—';
+      calcTotals(); return;
+    }
+
+    const prod = PRODUCTOS.find(p => p.cod === cod);
+    if (!prod) return;
+
+    empEl.textContent = prod.emp === 1 ? 'und' : prod.emp + ' und';
+
+    // Validar múltiplo
+    if (prod.emp > 1 && qty % prod.emp !== 0) {
+      qtyEl.classList.add('warn');
+      wrnEl.textContent = '⚠ múltiplo de ' + prod.emp;
+      punitEl.textContent = '—'; netoEl.textContent = '—'; ivaEl.textContent = '—'; totEl.textContent = '—';
+      dtoEl.textContent = '—'; dtoEl.className = 'dto-badge dto-0';
+      calcTotals(); return;
+    }
+
+    const dto = getDescuento(qty);
+    const pUnit = Math.round(prod.precio * dto.factor);
+    const neto  = Math.round(pUnit * qty / 1.19);
+    const iva   = Math.round(neto * 0.19);
+    const total = neto + iva;
+
+    dtoEl.textContent = dto.label; dtoEl.className = 'dto-badge ' + dto.cls;
+    punitEl.textContent = fmt(pUnit);
+    netoEl.textContent  = fmt(neto);
+    ivaEl.textContent   = fmt(iva);
+    totEl.textContent   = fmt(total);
+
+    calcTotals();
+  }
+
+  function calcTotals() {
+    let sumNeto = 0, sumIva = 0, sumTotal = 0;
+    for (let i = 0; i < NUM_FILAS; i++) {
+      const sel = document.getElementById('csel' + i);
+      const qtyEl = document.getElementById('cqty' + i);
+      const cod = sel ? sel.value : '';
+      const qty = parseInt(qtyEl ? qtyEl.value : 0) || 0;
+      if (!cod || qty <= 0) continue;
+      const prod = PRODUCTOS.find(p => p.cod === cod);
+      if (!prod) continue;
+      if (prod.emp > 1 && qty % prod.emp !== 0) continue;
+      const dto = getDescuento(qty);
+      const pUnit = Math.round(prod.precio * dto.factor);
+      const neto  = Math.round(pUnit * qty / 1.19);
+      const iva   = Math.round(neto * 0.19);
+      sumNeto  += neto;
+      sumIva   += iva;
+      sumTotal += neto + iva;
+    }
+    document.getElementById('ctNeto').textContent  = fmt(sumNeto);
+    document.getElementById('ctIva').textContent   = fmt(sumIva);
+    document.getElementById('ctTotal').textContent = fmt(sumTotal);
+  }
+
+  function resetCalc() {
+    buildCalcRows();
+    document.getElementById('ctNeto').textContent  = '$0';
+    document.getElementById('ctIva').textContent   = '$0';
+    document.getElementById('ctTotal').textContent = '$0';
+  }
+
+  function abrirCalculadora(productoNom) {
+    document.getElementById('calcModal').classList.add('active');
+    if (productoNom) {
+      // Pre-seleccionar el producto en la primera fila vacía
+      const prod = PRODUCTOS.find(p => p.nom.toLowerCase().includes(productoNom.toLowerCase()));
+      if (prod) {
+        const sel = document.getElementById('csel0');
+        if (sel) { sel.value = prod.cod; calcRow(0); }
+      }
+    }
+  }
+
+  function enviarCalculadora() {
+    const total = document.getElementById('ctTotal').textContent;
+    if (total === '$0') { alert('Agrega al menos un producto con cantidad.'); return; }
+
+    let lineas = [];
+    for (let i = 0; i < NUM_FILAS; i++) {
+      const sel = document.getElementById('csel' + i);
+      const qtyEl = document.getElementById('cqty' + i);
+      const cod = sel ? sel.value : '';
+      const qty = parseInt(qtyEl ? qtyEl.value : 0) || 0;
+      if (!cod || qty <= 0) continue;
+      const prod = PRODUCTOS.find(p => p.cod === cod);
+      if (!prod) continue;
+      if (prod.emp > 1 && qty % prod.emp !== 0) continue;
+      const dto = getDescuento(qty);
+      const pUnit = Math.round(prod.precio * dto.factor);
+      const neto  = Math.round(pUnit * qty / 1.19);
+      const iva   = Math.round(neto * 0.19);
+      const tot   = neto + iva;
+      lineas.push(`• ${prod.nom} x${qty} und → ${fmt(pUnit)}/und → Total: ${fmt(tot)} (dto ${dto.label})`);
+    }
+
+    const neto  = document.getElementById('ctNeto').textContent;
+    const iva   = document.getElementById('ctIva').textContent;
+
+    let msg = `Hola ZulcPlast! 👋\n\n`;
+    msg += `*Cotización calculada desde la web*\n`;
+    msg += `━━━━━━━━━━━━━━━\n`;
+    msg += `📦 *Pedido:*\n` + lineas.join('\n') + '\n';
+    msg += `━━━━━━━━━━━━━━━\n`;
+    msg += `🧾 Subtotal sin IVA: ${neto}\n`;
+    msg += `🧾 IVA 19%: ${iva}\n`;
+    msg += `💰 *TOTAL con IVA: ${total}*\n`;
+    msg += `━━━━━━━━━━━━━━━\n`;
+    msg += `🎁 Soy cliente nuevo — quiero el *10% de descuento + envío gratis*`;
+
+    const url = `https://wa.me/573238344768?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  }
+
+  // Inicializar calculadora al cargar
+  document.addEventListener('DOMContentLoaded', function() {
+    buildCalcRows();
+  });
+
+  // Cerrar modal al hacer clic fuera
+  document.getElementById('calcModal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('active');
+  });
+
+
+<!-- ═══════════════ CALCULADORA MODAL ═══════════════ -->
+<div class="calc-overlay" id="calcModal">
+  <div class="calc-modal">
+    <div class="calc-header">
+      <div>
+        <h2>🧮 Calculadora de Pedido</h2>
+        <p>Selecciona productos y cantidades — precios y descuentos en tiempo real con IVA discriminado</p>
+      </div>
+      <button class="calc-close" onclick="document.getElementById('calcModal').classList.remove('active')">✕</button>
+    </div>
+    <div class="calc-body">
+      <div class="descuento-info">
+        <div class="desc-badge">1 und → <span>sin dto</span></div>
+        <div class="desc-badge">30–50 und → <span>15% off</span></div>
+        <div class="desc-badge">51–100 und → <span>20% off</span></div>
+        <div class="desc-badge">101–500 und → <span>25% off</span></div>
+        <div class="desc-badge">501+ und → <span>30% off ★</span></div>
+        <div class="desc-badge" style="background:#fff3cd;color:#856404;">⚠️ Cantidades en múltiplos del empaque</div>
+      </div>
+      <div class="calc-table-wrap">
+        <table class="calc-table" id="calcTable">
+          <thead>
+            <tr>
+              <th>#</th><th>Producto</th><th>Empaque</th><th>Cantidad</th>
+              <th>Dto</th><th>P. Unit c/IVA</th><th>Neto s/IVA</th><th>IVA 19%</th><th>Total c/IVA</th>
+            </tr>
+          </thead>
+          <tbody id="calcBody"></tbody>
+        </table>
+      </div>
+      <div class="calc-footer">
+        <div class="calc-totals">
+          <div class="calc-total-item">
+            <label>Subtotal sin IVA</label>
+            <div class="val" id="ctNeto">$0</div>
+          </div>
+          <div class="calc-total-item">
+            <label>IVA 19%</label>
+            <div class="val" id="ctIva">$0</div>
+          </div>
+          <div class="calc-total-item highlight">
+            <label>TOTAL con IVA</label>
+            <div class="val" id="ctTotal">$0</div>
+          </div>
+        </div>
+        <div class="calc-actions">
+          <button class="btn-calc-reset" onclick="resetCalc()">↺ Limpiar</button>
+          <button class="btn-calc-wa" onclick="enviarCalculadora()">💬 Enviar por WhatsApp</button>
+        </div>
+      </div>
+      <div class="calc-nota">🔒 Solo usamos tu WhatsApp para enviarte la cotización. Sin spam.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
