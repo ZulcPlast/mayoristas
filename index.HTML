@@ -1517,6 +1517,106 @@
   .calc-nota{font-size:12px;color:var(--zulc-gray);text-align:center;margin-top:8px;}
   @media(max-width:600px){.calc-body,.calc-header{padding:16px;}.calc-footer{flex-direction:column;}}
 
+
+  .cat-loading{text-align:center;padding:80px 20px;color:var(--zulc-gray);font-size:16px;}
+  .cat-loading .spinner{width:44px;height:44px;border:3px solid var(--zulc-border);border-top-color:var(--zulc-blue);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .macro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;padding:0 5% 40px;max-width:960px;margin:0 auto;}
+  .macro-card{border-radius:18px;padding:20px 14px;text-align:center;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;border:2px solid transparent;position:relative;}
+  .macro-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12);}
+  .macro-card.active{border-color:var(--zulc-yellow);box-shadow:0 0 0 4px rgba(245,200,0,0.2);}
+  .mc-icon{font-size:40px;margin-bottom:8px;display:block;}
+  .mc-label{font-weight:800;font-size:13px;color:var(--zulc-dark);}
+  .mc-count{position:absolute;top:8px;right:8px;background:var(--zulc-dark);color:var(--zulc-yellow);border-radius:20px;padding:2px 7px;font-size:10px;font-weight:700;}
+  .macro-all{background:var(--zulc-dark);color:#fff;border-radius:18px;padding:14px;text-align:center;cursor:pointer;transition:all 0.2s;border:2px solid transparent;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:13px;}
+  .macro-all:hover{background:var(--zulc-blue);}
+  .macro-all.active{border-color:var(--zulc-yellow);}
+  .productos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;padding:0 5% 60px;}
+  .producto-card{background:#fff;border-radius:16px;overflow:hidden;border:1.5px solid var(--zulc-border);cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;display:flex;flex-direction:column;}
+  .producto-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(27,43,107,0.12);}
+  .prod-img-wrap{width:100%;aspect-ratio:1/1;overflow:hidden;background:#f8f9ff;display:flex;align-items:center;justify-content:center;}
+  .prod-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+  .producto-card:hover .prod-img-wrap img{transform:scale(1.04);}
+  .prod-emoji-ph{font-size:64px;}
+  .prod-info{padding:14px;flex:1;display:flex;flex-direction:column;gap:5px;}
+  .prod-seg-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:2px 8px;border-radius:20px;margin-bottom:2px;}
+  .prod-nombre{font-weight:700;font-size:14px;color:var(--zulc-dark);line-height:1.3;}
+  .prod-precio-wrap{display:flex;align-items:baseline;gap:4px;margin-top:4px;}
+  .prod-desde{font-size:11px;color:var(--zulc-gray);}
+  .prod-precio{font-size:18px;font-weight:800;color:var(--zulc-orange);font-family:var(--font-display);}
+  .prod-cop{font-size:11px;color:var(--zulc-gray);}
+  .prod-emp{font-size:11px;color:var(--zulc-gray);background:var(--zulc-light);padding:3px 8px;border-radius:6px;display:inline-block;}
+  .btn-ver-prod{margin-top:auto;padding:10px 16px;background:var(--zulc-dark);color:var(--zulc-yellow);border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.2s;width:100%;}
+  .btn-ver-prod:hover{background:var(--zulc-blue);}
+  .prod-page-overlay{display:none;position:fixed;inset:0;z-index:900;background:var(--zulc-white);overflow-y:auto;}
+  .prod-page-overlay.active{display:block;}
+  .prod-page-nav{position:sticky;top:0;z-index:10;background:rgba(11,26,62,0.97);backdrop-filter:blur(10px);padding:0 5%;height:60px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--zulc-yellow);}
+  .prod-page-nav .back-btn{color:var(--zulc-yellow);background:none;border:none;font-size:15px;font-weight:700;cursor:pointer;}
+  .prod-page-nav .brand{color:#fff;font-family:var(--font-display);font-size:22px;}
+  .prod-page-body{max-width:1100px;margin:0 auto;padding:48px 5%;display:grid;grid-template-columns:1fr 1fr;gap:64px;}
+  @media(max-width:768px){.prod-page-body{grid-template-columns:1fr;gap:32px;}}
+  .prod-page-img-wrap{border-radius:20px;overflow:hidden;background:#f4f6ff;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 40px rgba(27,43,107,0.08);}
+  .prod-page-img-wrap img{width:100%;height:100%;object-fit:cover;}
+  .prod-page-info{display:flex;flex-direction:column;gap:20px;}
+  .prod-page-seg{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
+  .prod-page-name{font-family:var(--font-display);font-size:38px;color:var(--zulc-dark);line-height:1.1;}
+  .prod-page-emp-badge{display:inline-flex;align-items:center;gap:8px;background:var(--zulc-light);border:1.5px solid var(--zulc-border);border-radius:10px;padding:10px 16px;font-size:14px;font-weight:600;}
+  .prod-page-emp-badge span{color:var(--zulc-orange);font-size:18px;font-weight:800;}
+  .dto-table-wrap{border-radius:14px;overflow:hidden;border:1.5px solid var(--zulc-border);}
+  .dto-table-title{background:var(--zulc-dark);color:var(--zulc-yellow);padding:12px 20px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.06em;}
+  .dto-table{width:100%;border-collapse:collapse;}
+  .dto-table th{background:#f4f6ff;padding:10px 16px;font-size:11px;text-align:left;color:var(--zulc-gray);text-transform:uppercase;}
+  .dto-table td{padding:12px 16px;border-top:1px solid var(--zulc-border);font-size:14px;}
+  .dto-table tr.best-row td{background:#fffbea;font-weight:700;}
+  .dto-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;}
+  .dto-tag-0{background:#f0f0f0;color:#888;}
+  .dto-tag-15{background:#fff3cd;color:#856404;}
+  .dto-tag-20{background:#d1ecf1;color:#0c5460;}
+  .dto-tag-25{background:#d4edda;color:#155724;}
+  .dto-tag-30{background:#1B2B6B;color:#F5C800;}
+  .prod-page-cta-wrap{display:flex;flex-direction:column;gap:12px;}
+  .btn-cotizar-prod{background:#25D366;color:#fff;border:none;border-radius:12px;padding:16px 28px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background 0.2s;}
+  .btn-cotizar-prod:hover{background:#1ebe59;}
+  .btn-calc-prod{background:var(--zulc-dark);color:var(--zulc-yellow);border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;transition:background 0.2s;}
+  .btn-calc-prod:hover{background:var(--zulc-blue);}
+  .prod-page-note{font-size:12px;color:var(--zulc-gray);text-align:center;}
+  .calc-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(11,26,62,0.85);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:16px;}
+  .calc-overlay.active{display:flex;}
+  .calc-modal{background:#fff;border-radius:20px;width:100%;max-width:960px;max-height:92vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,0.4);}
+  .calc-header{background:var(--zulc-dark);color:#fff;padding:24px 32px;border-radius:20px 20px 0 0;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+  .calc-header h2{font-family:var(--font-display);font-size:26px;color:var(--zulc-yellow);}
+  .calc-header p{font-size:13px;color:rgba(255,255,255,0.6);margin-top:4px;}
+  .calc-close{background:rgba(255,255,255,0.1);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;}
+  .calc-close:hover{background:rgba(255,255,255,0.25);}
+  .calc-body{padding:24px 32px;}
+  .descuento-info{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+  .desc-badge{background:var(--zulc-light);border:1px solid var(--zulc-border);border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;}
+  .desc-badge span{color:var(--zulc-orange);}
+  .calc-table-wrap{overflow-x:auto;margin-bottom:20px;}
+  .calc-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .calc-table th{background:var(--zulc-dark);color:var(--zulc-yellow);padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;white-space:nowrap;}
+  .calc-table td{padding:9px 12px;border-bottom:1px solid var(--zulc-border);vertical-align:middle;}
+  .calc-table tr:hover td{background:var(--zulc-light);}
+  .calc-table select{border:1.5px solid var(--zulc-border);border-radius:6px;padding:6px 8px;font-size:13px;width:100%;min-width:180px;background:#fff;cursor:pointer;}
+  .calc-table input[type=number]{border:1.5px solid var(--zulc-border);border-radius:6px;padding:6px 8px;font-size:13px;width:90px;text-align:center;}
+  .calc-table input.warn{border-color:#e74c3c;background:#fff5f5;}
+  .calc-warn-txt{color:#e74c3c;font-size:11px;display:block;margin-top:2px;}
+  .precio-cell{font-weight:700;color:var(--zulc-blue);}
+  .total-cell{font-weight:700;}
+  .iva-cell{color:var(--zulc-gray);font-size:12px;}
+  .calc-footer{background:var(--zulc-light);border-radius:12px;padding:20px 24px;margin-bottom:20px;display:flex;gap:32px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
+  .calc-totals{display:flex;gap:24px;flex-wrap:wrap;}
+  .calc-total-item label{font-size:11px;color:var(--zulc-gray);text-transform:uppercase;display:block;}
+  .calc-total-item .val{font-size:22px;font-weight:700;color:var(--zulc-dark);}
+  .calc-total-item.highlight .val{color:var(--zulc-orange);font-size:28px;}
+  .calc-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn-calc-wa{background:#25D366;color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;}
+  .btn-calc-wa:hover{background:#1ebe59;}
+  .btn-calc-reset{background:transparent;color:var(--zulc-gray);border:1.5px solid var(--zulc-border);border-radius:10px;padding:14px 20px;font-size:14px;cursor:pointer;}
+  .btn-calc-reset:hover{border-color:var(--zulc-blue);color:var(--zulc-blue);}
+  .calc-nota{font-size:12px;color:var(--zulc-gray);text-align:center;margin-top:8px;}
+  @media(max-width:600px){.calc-body,.calc-header{padding:16px;}.calc-footer{flex-direction:column;}}
+
 </style>
 </head>
 <body>
@@ -1657,21 +1757,22 @@
 
 <!-- CATÁLOGO DE PRODUCTOS -->
 
+
 <section id="productos" style="padding-top:80px;">
   <div style="text-align:center;padding:0 5% 40px;">
     <div class="section-label">Catálogo</div>
     <h2 class="section-title">Nuestros productos</h2>
-    <p class="section-sub">Selecciona una categoría para ver precios mayoristas y cotizar.</p>
+    <p class="section-sub">Selecciona una categoría o explora todo el catálogo mayorista.</p>
   </div>
   <div class="macro-grid">
     <div class="macro-all active" id="mc-todos" onclick="filtrarMacro('todos',this)">
-      <span style="font-size:24px">⚡</span><span>Todos</span>
+      <span style="font-size:22px">⚡</span> Todos
     </div>
-<div class="macro-card" id="mc-coladores" style="background:#E8F5E9" onclick="filtrarMacro('coladores',this)"><span class="mc-icon">🫙</span><div class="mc-label">Coladores</div><div class="mc-desc">Coladores de malla y tela</div><span class="mc-count" id="cnt-coladores">0</span></div>
-<div class="macro-card" id="mc-bebidas" style="background:#E3F2FD" onclick="filtrarMacro('bebidas',this)"><span class="mc-icon">🍶</span><div class="mc-label">Bebidas</div><div class="mc-desc">Jarras y botilitos</div><span class="mc-count" id="cnt-bebidas">0</span></div>
-<div class="macro-card" id="mc-recipientes" style="background:#FFF3E0" onclick="filtrarMacro('recipientes',this)"><span class="mc-icon">🧴</span><div class="mc-label">Recipientes</div><div class="mc-desc">Recipientes y salseros</div><span class="mc-count" id="cnt-recipientes">0</span></div>
-<div class="macro-card" id="mc-hogar" style="background:#F3E5F5" onclick="filtrarMacro('hogar',this)"><span class="mc-icon">🏠</span><div class="mc-label">Hogar</div><div class="mc-desc">Hogar y bandejas</div><span class="mc-count" id="cnt-hogar">0</span></div>
-<div class="macro-card" id="mc-jardin" style="background:#F1F8E9" onclick="filtrarMacro('jardin',this)"><span class="mc-icon">🪴</span><div class="mc-label">Jardín</div><div class="mc-desc">Materas y jardín</div><span class="mc-count" id="cnt-jardin">0</span></div>
+<div class="macro-card" id="mc-coladores" style="background:#E8F5E9" onclick="filtrarMacro('coladores',this)"><span class="mc-icon">🫙</span><div class="mc-label">Coladores</div><span class="mc-count" id="cnt-coladores">...</span></div>
+<div class="macro-card" id="mc-bebidas" style="background:#E3F2FD" onclick="filtrarMacro('bebidas',this)"><span class="mc-icon">🍶</span><div class="mc-label">Bebidas</div><span class="mc-count" id="cnt-bebidas">...</span></div>
+<div class="macro-card" id="mc-recipientes" style="background:#FFF3E0" onclick="filtrarMacro('recipientes',this)"><span class="mc-icon">🧴</span><div class="mc-label">Recipientes</div><span class="mc-count" id="cnt-recipientes">...</span></div>
+<div class="macro-card" id="mc-hogar" style="background:#F3E5F5" onclick="filtrarMacro('hogar',this)"><span class="mc-icon">🏠</span><div class="mc-label">Hogar</div><span class="mc-count" id="cnt-hogar">...</span></div>
+<div class="macro-card" id="mc-jardin" style="background:#F1F8E9" onclick="filtrarMacro('jardin',this)"><span class="mc-icon">🪴</span><div class="mc-label">Jardín</div><span class="mc-count" id="cnt-jardin">...</span></div>
 
   </div>
   <div id="cat-loading" class="cat-loading">
@@ -1679,6 +1780,7 @@
   </div>
   <div class="productos-grid" id="productosGrid" style="display:none;"></div>
 </section>
+
 
 
 
@@ -2213,62 +2315,135 @@
     </div>
   </div>
 </div>
+
+<div class="prod-page-overlay" id="prodPage">
+  <nav class="prod-page-nav">
+    <button class="back-btn" onclick="cerrarProducto()">← Volver</button>
+    <div class="brand">ZULC<span style="color:var(--zulc-yellow)">PLAST</span></div>
+    <button class="back-btn" onclick="abrirCalculadora()">🧮 Calculadora</button>
+  </nav>
+  <div class="prod-page-body">
+    <div>
+      <div class="prod-page-img-wrap">
+        <img id="ppImg" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+        <div id="ppEmoji" style="font-size:100px;display:none;align-items:center;justify-content:center;width:100%;height:100%;"></div>
+      </div>
+    </div>
+    <div class="prod-page-info">
+      <div class="prod-page-seg" id="ppSeg"></div>
+      <div class="prod-page-name" id="ppNom"></div>
+      <div class="prod-page-emp-badge">📦 Empaque mínimo: <span id="ppEmp"></span> unidades</div>
+      <div class="dto-table-wrap">
+        <div class="dto-table-title">💰 Precios por volumen (con IVA 19%)</div>
+        <table class="dto-table">
+          <thead><tr><th>Cantidad</th><th>Descuento</th><th>Precio unitario</th><th>Total estimado</th></tr></thead>
+          <tbody id="ppDtoBody"></tbody>
+        </table>
+      </div>
+      <div class="prod-page-cta-wrap">
+        <button class="btn-cotizar-prod" id="ppWaBtn">💬 Cotizar por WhatsApp</button>
+        <button class="btn-calc-prod" onclick="abrirCalculadora()">🧮 Calculadora completa</button>
+        <div class="prod-page-note">🔒 Sin compromiso. Respuesta en menos de 2 horas hábiles.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="calc-overlay" id="calcModal">
+  <div class="calc-modal">
+    <div class="calc-header">
+      <div><h2>🧮 Calculadora de Pedido</h2><p>Precios con IVA y descuentos en tiempo real</p></div>
+      <button class="calc-close" onclick="document.getElementById('calcModal').classList.remove('active')">✕</button>
+    </div>
+    <div class="calc-body">
+      <div class="descuento-info">
+        <div class="desc-badge">1–29 und → <span>sin dto</span></div>
+        <div class="desc-badge">30–50 und → <span>15% off</span></div>
+        <div class="desc-badge">51–100 und → <span>20% off</span></div>
+        <div class="desc-badge">101–500 und → <span>25% off</span></div>
+        <div class="desc-badge">501+ und → <span>30% off ★</span></div>
+      </div>
+      <div class="calc-table-wrap">
+        <table class="calc-table">
+          <thead><tr><th>#</th><th>Producto</th><th>Empaque</th><th>Cantidad</th><th>Dto</th><th>P.Unit c/IVA</th><th>Neto s/IVA</th><th>IVA 19%</th><th>Total c/IVA</th></tr></thead>
+          <tbody id="calcBody"></tbody>
+        </table>
+      </div>
+      <div class="calc-footer">
+        <div class="calc-totals">
+          <div class="calc-total-item"><label>Subtotal sin IVA</label><div class="val" id="ctNeto">$0</div></div>
+          <div class="calc-total-item"><label>IVA 19%</label><div class="val" id="ctIva">$0</div></div>
+          <div class="calc-total-item highlight"><label>TOTAL con IVA</label><div class="val" id="ctTotal">$0</div></div>
+        </div>
+        <div class="calc-actions">
+          <button class="btn-calc-reset" onclick="resetCalc()">↺ Limpiar</button>
+          <button class="btn-calc-wa" onclick="enviarCalculadora()">💬 Enviar por WhatsApp</button>
+        </div>
+      </div>
+      <div class="calc-nota">🔒 Tu información solo se usa para enviarte la cotización.</div>
+    </div>
+  </div>
+</div>
 <script>
-const SHEET_CSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vRybT9umWoFcgExktwJa2aK1AcH-fc9b8MmpPgu_snbX9r3UJA0SNd6WcHHEsw4wHuWUGjqAYhV8lhp/pub?gid=402369368&single=true&output=csv';
+const APPS_URL='https://script.google.com/macros/s/AKfycbysNx8N-DAGT_EujZp-9__73ZbSM3mNul6CUNh0OixUF0embLYINdfFtWGaDFMdmr3Y/exec';
 const WA_NUMBER='573238344768';
 const NUM_FILAS=10;
 const SEG_TO_MACRO={"COLADOR MALLA":"coladores","COLADOR TELA":"coladores","JARRAS":"bebidas","BOTILITOS":"bebidas","RECIPIENTES":"recipientes","SALSEROS":"recipientes","HOGAR":"hogar","BANDEJAS":"hogar","MATERAS":"jardin"};
-const SEG_STYLES={"COLADOR MALLA":{"bg":"#E8F5E9","accent":"#2E7D32","icon":"🫙","id":"coladores"},"COLADOR TELA":{"bg":"#E8F5E9","accent":"#2E7D32","icon":"🫙","id":"coladores"},"JARRAS":{"bg":"#E3F2FD","accent":"#1565C0","icon":"🍶","id":"bebidas"},"BOTILITOS":{"bg":"#E3F2FD","accent":"#1565C0","icon":"🍶","id":"bebidas"},"RECIPIENTES":{"bg":"#FFF3E0","accent":"#E65100","icon":"🧴","id":"recipientes"},"SALSEROS":{"bg":"#FFF3E0","accent":"#E65100","icon":"🧴","id":"recipientes"},"HOGAR":{"bg":"#F3E5F5","accent":"#6A1B9A","icon":"🏠","id":"hogar"},"BANDEJAS":{"bg":"#F3E5F5","accent":"#6A1B9A","icon":"🏠","id":"hogar"},"MATERAS":{"bg":"#F1F8E9","accent":"#1B5E20","icon":"🪴","id":"jardin"}};
+const SEG_STYLES={"COLADOR MALLA":{"bg":"#E8F5E9","accent":"#2E7D32","icon":"🫙"},"COLADOR TELA":{"bg":"#E8F5E9","accent":"#2E7D32","icon":"🫙"},"JARRAS":{"bg":"#E3F2FD","accent":"#1565C0","icon":"🍶"},"BOTILITOS":{"bg":"#E3F2FD","accent":"#1565C0","icon":"🍶"},"RECIPIENTES":{"bg":"#FFF3E0","accent":"#E65100","icon":"🧴"},"SALSEROS":{"bg":"#FFF3E0","accent":"#E65100","icon":"🧴"},"HOGAR":{"bg":"#F3E5F5","accent":"#6A1B9A","icon":"🏠"},"BANDEJAS":{"bg":"#F3E5F5","accent":"#6A1B9A","icon":"🏠"},"MATERAS":{"bg":"#F1F8E9","accent":"#1B5E20","icon":"🪴"}};
+const SEG_EMOJI={"HOGAR":"🏠","BANDEJAS":"🫱","BOTILITOS":"🍶","RECIPIENTES":"🧴","COLADOR MALLA":"🫙","COLADOR TELA":"☕","MATERAS":"🪴","JARRAS":"🫗","SALSEROS":"🧴"};
+const PHOTO_MAP={"ALCANCIA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/ALCANCIA.jpg","ALCANCÍA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/ALCANCIA.jpg","BANDEJA CUBIERTERA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/CUBIERTERO.jpg","CUBIERTERO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/CUBIERTERO.jpg","BANDEJA GRANDE":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BANDEJA_GRANDE.jpg","BANDEJA JUMBO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BANDEJA_JUMBO.jpg","BANDEJA MEDIANA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BANDEJA_MEDIANA.jpg","BANDEJA PEQUEÑA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BANDEJA_PEQUEÑA.jpg","BANDEJA PEQUE":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BANDEJA_PEQUEÑA.jpg","BUTACO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BUTACO.jpg","BOTILITO 1L":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BOTILITO_GRANDE.jpg","BOTILITO GRANDE":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BOTILITO_GRANDE.jpg","BOTILITO 1/2":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BOTILITO_MEDIANO.jpg","BOTILITO MEDIANO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BOTILITO_MEDIANO.jpg","BOTILITO 1/4":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BOTILITO_PEQUEÑO.jpg","BOTILITO PEQUEÑO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/BOTILITO_PEQUEÑO.jpg","CAJA COCINA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/CAJA%20_COCINA.jpg","CERNIDOR":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/CERNIDOR.jpg","COLADOR MALLA # 18 ECO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_MALLA_18.jpg","COLADOR MALLA #18 ECO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_MALLA_18.jpg","COLADOR MALLA # 14":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_MALLA_14.jpg","COLADOR MALLA #14":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_MALLA_14.jpg","COLADOR MALLA # 18 ORIGINAL":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_18_ORG.jpg","COLADOR MALLA #18 ORIGINAL":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_18_ORG.jpg","COLADOR MALLA #9":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR%20_MALLA_9.jpg","COLADOR MALLA # 9":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR%20_MALLA_9.jpg","COLADOR TAZA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_TAZA.jpg","COLADOR TELA # 18":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_TELA_18.jpg","COLADOR TELA #18":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_TELA_18.jpg","COLADOR TELA # 9":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_TELA_9.jpg","COLADOR TELA #9":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_TELA_9.jpg","COLADOR TELA #14":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_TELA_14.jpg","COLADOR TELA # 14":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/COLADOR_TELA_14.jpg","CUCHARON":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/CUCHARON.jpg","CUCHARÓN":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/CUCHARON.jpg","GANCHO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/GANCHO_MATERA.jpg","JARRA 2":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/JARRA_2_LTS.jpg","JARRA 6":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/JARRA_6_LTS.jpg","MATERA # 23":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/MATERIA_23.jpg","MATERA #23":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/MATERIA_23.jpg","MATERA COLGAR":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/MATERA_COLGAR_23.jpg","PALANGANA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/PALANGANA.jpg","PAPELERA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/PAPELERA_RATAN.jpg","PONCHERA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/PONCHERA.jpg","SALERO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/SALERO.jpg","SALSERO BOMBILLO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/SALSERO_BOMBILLO.jpg","SALSERO GRANDE":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/SALSERO_GRANDE.jpg","SALSERO JUMBO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/SALSERO_JUMBO.jpg","SALSERO LUJO # 2":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/SALSERO_LUJO_2.jpg","SALSERO LUJO #2":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/SALSERO_LUJO_2.jpg","SALSERO LUJO # 1":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/SALSERO%20LUJO%202.jpg","SALSERO LUJO #1":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/SALSERO%20LUJO%202.jpg","TABLA PICAR ECON":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/TABLA_PICAR_ECO.jpg","TABLA PICAR SILI":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/TABLA_PICAR_ECO.jpg","TAZA DE AGUA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/TAZA_DE_AGUA.jpg","TAZA AGUA":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/TAZA_DE_AGUA.jpg","TERMO":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/TERMO_5_LTS.jpg","RETROESCAV":"https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/RETROESCADORA.jpg"};
+
 let allProducts=[];
 let currentProdIdx=null;
 
-function getDriveImg(url){
-  if(!url||url.trim()==='') return '';
-  let id='';
-  const m1=url.match(/\/file\/d\/([a-zA-Z0-9_-]{15,})/);
-  const m2=url.match(/open\?id=([a-zA-Z0-9_-]{15,})/);
-  const m3=url.match(/id=([a-zA-Z0-9_-]{15,})/);
-  const m4=url.match(/\/d\/([a-zA-Z0-9_-]{15,})/);
-  if(m1) id=m1[1]; else if(m2) id=m2[1]; else if(m3) id=m3[1]; else if(m4) id=m4[1];
-  if(!id) return url;
-  return 'https://drive.google.com/thumbnail?id='+id+'&sz=w800';
+function getPhoto(p){
+  // First check column from sheet (filename only)
+  if(p.foto && p.foto.trim()!==''){
+    const f=p.foto.trim();
+    // If it's just a filename (not a URL), prepend base
+    if(!f.startsWith('http')){
+      return 'https://raw.githubusercontent.com/ZulcPlast/mayoristas/main/'+encodeURIComponent(f);
+    }
+    return f;
+  }
+  // Try to find by product name in PHOTO_MAP
+  const nom=p.nombre.toUpperCase();
+  for(const [key,url] of Object.entries(PHOTO_MAP)){
+    if(nom.includes(key)) return url;
+  }
+  return '';
+}
+
+function getEmoji(p){
+  const seg=p.segmento||'';
+  return SEG_EMOJI[seg]||'📦';
 }
 
 function fmt(n){return '$'+Math.round(n).toLocaleString('es-CO');}
 
-function parseCSVRow(row){
-  const cols=[];let cur='',inQ=false;
-  for(let i=0;i<row.length;i++){
-    const c=row[i];
-    if(c==='"'){inQ=!inQ;}
-    else if(c===','&&!inQ){cols.push(cur.trim());cur='';}
-    else{cur+=c;}
-  }
-  cols.push(cur.trim());
-  if(cols.length<4) return null;
-  const p1=parseFloat(String(cols[3]).replace(/[^0-9.]/g,''))||0;
-  if(p1===0) return null;
-  return{
-    segmento:(cols[0]||'').toUpperCase().trim(),
-    nombre:(cols[1]||'').trim(),
-    empaque:parseInt(cols[2])||1,
-    precio1:p1,
-    precio30:parseFloat(String(cols[4]).replace(/[^0-9.]/g,''))||Math.round(p1*0.85),
-    precio51:parseFloat(String(cols[5]).replace(/[^0-9.]/g,''))||Math.round(p1*0.80),
-    precio101:parseFloat(String(cols[6]).replace(/[^0-9.]/g,''))||Math.round(p1*0.75),
-    precio501:parseFloat(String(cols[7]).replace(/[^0-9.]/g,''))||Math.round(p1*0.70),
-    foto:(cols[8]||'').trim(),
-  };
-}
-
 async function loadProducts(){
   try{
-    const res=await fetch(SHEET_CSV);
-    const text=await res.text();
-    allProducts=text.trim().split('\n').slice(1).map(parseCSVRow).filter(p=>p&&p.nombre);
+    const res=await fetch(APPS_URL);
+    const data=await res.json();
+    // Headers from sheet: SEGMENTO, PRODUCTO, UND EMPAQUE, PRECIO 1 UNIDAD (c/IVA), 30-50, 51-100, 101-500, 501+, Link Foto
+    allProducts=data
+      .filter(r=>r['SEGMENTO']&&r['PRODUCTO'])
+      .map(r=>({
+        segmento: String(r['SEGMENTO']||'').toUpperCase().trim(),
+        nombre:   String(r['PRODUCTO']||'').trim(),
+        empaque:  parseInt(r['UND EMPAQUE'])||1,
+        precio1:  parseFloat(String(r['PRECIO 1 UNIDAD (c/IVA)']||'0').replace(/[^0-9.]/g,''))||0,
+        precio30: parseFloat(String(r['30 – 50 UND (Dto 15%) c/IVA']||'0').replace(/[^0-9.]/g,''))||0,
+        precio51: parseFloat(String(r['51 – 100 UND (Dto 20%) c/IVA']||'0').replace(/[^0-9.]/g,''))||0,
+        precio101:parseFloat(String(r['101 – 500 UND (Dto 25%) c/IVA']||'0').replace(/[^0-9.]/g,''))||0,
+        precio501:parseFloat(String(r['501 + UND (Dto 30%) ★ c/IVA']||'0').replace(/[^0-9.]/g,''))||0,
+        foto:     String(r['Link Foto']||'').trim(),
+      }))
+      .filter(p=>p.precio1>0);
     updateCounts();
     renderGrid(allProducts);
   }catch(e){
+    console.error('Error loading:',e);
     document.getElementById('cat-loading').innerHTML='<p style="color:#e74c3c">❌ Error cargando productos. Recarga la página.</p>';
   }
 }
@@ -2282,24 +2457,26 @@ function updateCounts(){
 function renderGrid(products){
   const grid=document.getElementById('productosGrid');
   const loading=document.getElementById('cat-loading');
-  if(!products.length){
+  if(!products||!products.length){
     loading.style.display='block';
     loading.innerHTML='<p style="color:#888;padding:40px">No hay productos en esta categoría.</p>';
     grid.style.display='none';return;
   }
   grid.innerHTML=products.map(p=>{
-    const globalIdx=allProducts.indexOf(p);
-    const style=SEG_STYLES[p.segmento]||{bg:'#f4f6ff',accent:'#1B2B6B',icon:'📦'};
-    const imgUrl=getDriveImg(p.foto);
-    const imgHtml=imgUrl
-      ?'<img src="'+imgUrl+'" alt="'+p.nombre+'" loading="lazy" onerror="this.style.display='none';this.nextSibling.style.display='flex'" style="width:100%;height:100%;object-fit:cover;"><div class="prod-emoji-ph" style="display:none">'+style.icon+'</div>'
-      :'<div class="prod-emoji-ph">'+style.icon+'</div>';
-    return '<div class="producto-card" onclick="verProducto('+globalIdx+')">'
+    const gi=allProducts.indexOf(p);
+    const st=SEG_STYLES[p.segmento]||{bg:'#f4f6ff',accent:'#1B2B6B',icon:'📦'};
+    const emoji=getEmoji(p);
+    const photo=getPhoto(p);
+    const imgHtml=photo
+      ?'<img src="'+photo+'" alt="'+p.nombre+'" loading="lazy" onerror="this.style.display='none';this.nextSibling.style.display='flex'" style="width:100%;height:100%;object-fit:cover;"><div class="prod-emoji-ph" style="display:none;align-items:center;justify-content:center;width:100%;height:100%;">'+emoji+'</div>'
+      :'<div class="prod-emoji-ph" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">'+emoji+'</div>';
+    const precio=p.precio30||p.precio1;
+    return '<div class="producto-card" onclick="verProducto('+gi+')">'
       +'<div class="prod-img-wrap">'+imgHtml+'</div>'
       +'<div class="prod-info">'
-      +'<span class="prod-seg-tag" style="background:'+style.bg+';color:'+style.accent+'">'+style.icon+' '+p.segmento+'</span>'
+      +'<span class="prod-seg-tag" style="background:'+st.bg+';color:'+st.accent+'">'+emoji+' '+p.segmento+'</span>'
       +'<div class="prod-nombre">'+p.nombre+'</div>'
-      +'<div class="prod-precio-wrap"><span class="prod-desde">desde</span><span class="prod-precio">'+fmt(p.precio30)+'</span><span class="prod-cop">c/IVA</span></div>'
+      +'<div class="prod-precio-wrap"><span class="prod-desde">desde</span><span class="prod-precio">'+fmt(precio)+'</span><span class="prod-cop">c/IVA</span></div>'
       +'<div class="prod-emp">Empaque: '+p.empaque+' und</div>'
       +'<button class="btn-ver-prod">Ver producto →</button>'
       +'</div></div>';
@@ -2316,34 +2493,34 @@ function filtrarMacro(macroId,btn){
 }
 
 function verProducto(idx){
-  const p=allProducts[idx]; if(!p) return;
+  const p=allProducts[idx];if(!p)return;
   currentProdIdx=idx;
-  const style=SEG_STYLES[p.segmento]||{bg:'#f4f6ff',accent:'#1B2B6B',icon:'📦'};
+  const st=SEG_STYLES[p.segmento]||{bg:'#f4f6ff',accent:'#1B2B6B',icon:'📦'};
+  const emoji=getEmoji(p);
+  const photo=getPhoto(p);
   const imgEl=document.getElementById('ppImg');
   const emojiEl=document.getElementById('ppEmoji');
-  const imgUrl=getDriveImg(p.foto);
-  if(imgUrl){
-    imgEl.src=imgUrl; imgEl.style.display='block'; emojiEl.style.display='none';
-    imgEl.onerror=()=>{imgEl.style.display='none';emojiEl.textContent=style.icon;emojiEl.style.display='flex';};
-  } else {
-    imgEl.style.display='none'; emojiEl.textContent=style.icon; emojiEl.style.display='flex';
+  if(photo){
+    imgEl.src=photo;imgEl.style.display='block';emojiEl.style.display='none';
+    imgEl.onerror=()=>{imgEl.style.display='none';emojiEl.textContent=emoji;emojiEl.style.display='flex';};
+  }else{
+    imgEl.style.display='none';emojiEl.textContent=emoji;emojiEl.style.display='flex';
   }
-  document.getElementById('ppSeg').textContent=p.segmento;
-  document.getElementById('ppSeg').style.color=style.accent;
+  document.getElementById('ppSeg').textContent=emoji+' '+p.segmento;
+  document.getElementById('ppSeg').style.color=st.accent;
   document.getElementById('ppNom').textContent=p.nombre;
   document.getElementById('ppEmp').textContent=p.empaque;
   const rows=[
-    ['1 – 29 und','—',p.precio1,'dto-tag-0',false],
-    ['30 – 50 und','-15%',p.precio30,'dto-tag-15',false],
-    ['51 – 100 und','-20%',p.precio51,'dto-tag-20',false],
-    ['101 – 500 und','-25%',p.precio101,'dto-tag-25',false],
-    ['501 + und ★','-30%',p.precio501,'dto-tag-30',true],
+    ['1 – 29 und','—',p.precio1,'dto-tag-0',false,1],
+    ['30 – 50 und','-15%',p.precio30,'dto-tag-15',false,30],
+    ['51 – 100 und','-20%',p.precio51,'dto-tag-20',false,51],
+    ['101 – 500 und','-25%',p.precio101,'dto-tag-25',false,101],
+    ['501 + und ★','-30%',p.precio501,'dto-tag-30',true,501],
   ];
-  document.getElementById('ppDtoBody').innerHTML=rows.map(([r,d,pu,cls,best],ri)=>{
-    const qty=[1,30,51,101,501][ri];
-    return '<tr'+(best?' class="best-row"':'')+'><td>'+r+'</td><td><span class="dto-tag '+cls+'">'+d+'</span></td><td><strong>'+fmt(pu)+'</strong></td><td>'+fmt(pu*qty)+'+</td></tr>';
-  }).join('');
-  const msg='Hola ZulcPlast! 👋\nQuiero cotizar *'+p.nombre+'* ('+p.segmento+')\nEmpaque: '+p.empaque+' und\nPrecio desde: '+fmt(p.precio30)+'\n\n¿Tienen disponibilidad? Soy cliente nuevo 🎁';
+  document.getElementById('ppDtoBody').innerHTML=rows.map(([r,d,pu,cls,best,qty])=>
+    '<tr'+(best?' class="best-row"':'')+'><td>'+r+'</td><td><span class="dto-tag '+cls+'">'+d+'</span></td><td><strong>'+fmt(pu)+'</strong></td><td>'+fmt(pu*qty)+'+</td></tr>'
+  ).join('');
+  const msg='Hola ZulcPlast! 👋\nQuiero cotizar *'+p.nombre+'* ('+p.segmento+')\nEmpaque: '+p.empaque+' und\nPrecio desde: '+fmt(p.precio30||p.precio1)+'\n\n¿Tienen disponibilidad? Soy cliente nuevo 🎁';
   document.getElementById('ppWaBtn').onclick=()=>window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg),'_blank');
   document.getElementById('prodPage').classList.add('active');
   window.scrollTo(0,0);
@@ -2351,12 +2528,12 @@ function verProducto(idx){
 
 function cerrarProducto(){document.getElementById('prodPage').classList.remove('active');}
 
-function getPrecioByQty(p,qty){if(qty>=501)return p.precio501;if(qty>=101)return p.precio101;if(qty>=51)return p.precio51;if(qty>=30)return p.precio30;return p.precio1;}
+function getPrecioByQty(p,qty){if(qty>=501)return p.precio501;if(qty>=101)return p.precio101;if(qty>=51)return p.precio51;if(qty>=30)return p.precio30||p.precio1;return p.precio1;}
 function getDtoInfo(qty){if(qty>=501)return{label:'30%',cls:'dto-tag-30'};if(qty>=101)return{label:'25%',cls:'dto-tag-25'};if(qty>=51)return{label:'20%',cls:'dto-tag-20'};if(qty>=30)return{label:'15%',cls:'dto-tag-15'};return{label:'—',cls:'dto-tag-0'};}
 
 function buildCalcRows(){
-  const tbody=document.getElementById('calcBody'); if(!tbody) return;
-  const opts=allProducts.map(p=>'<option value="'+p.nombre+'">'+p.nombre+' ('+p.segmento+')</option>').join('');
+  const tbody=document.getElementById('calcBody');if(!tbody)return;
+  const opts=allProducts.map(p=>'<option value="'+p.nombre+'">'+getEmoji(p)+' '+p.nombre+' ('+p.segmento+')</option>').join('');
   tbody.innerHTML='';
   for(let i=0;i<NUM_FILAS;i++){
     const tr=document.createElement('tr');
@@ -2382,18 +2559,18 @@ function calcRow(i){
   const punitEl=document.getElementById('cpunit'+i),netoEl=document.getElementById('cneto'+i);
   const ivaEl=document.getElementById('civa'+i),totEl=document.getElementById('ctot'+i);
   const wrnEl=document.getElementById('cwrn'+i);
-  if(qtyEl) qtyEl.classList.remove('warn');
-  if(wrnEl) wrnEl.textContent='';
+  if(qtyEl)qtyEl.classList.remove('warn');
+  if(wrnEl)wrnEl.textContent='';
   if(!nom||qty<=0){
     [empEl,punitEl,netoEl,ivaEl,totEl].forEach(e=>{if(e)e.textContent='—';});
     if(dtoEl){dtoEl.textContent='—';dtoEl.className='dto-tag dto-tag-0';}
     calcTotals();return;
   }
-  const p=allProducts.find(x=>x.nombre===nom); if(!p) return;
-  if(empEl) empEl.textContent=p.empaque===1?'und':p.empaque+' und';
+  const p=allProducts.find(x=>x.nombre===nom);if(!p)return;
+  if(empEl)empEl.textContent=p.empaque===1?'und':p.empaque+' und';
   if(p.empaque>1&&qty%p.empaque!==0){
-    if(qtyEl) qtyEl.classList.add('warn');
-    if(wrnEl) wrnEl.textContent='⚠ múltiplo de '+p.empaque;
+    if(qtyEl)qtyEl.classList.add('warn');
+    if(wrnEl)wrnEl.textContent='⚠ múltiplo de '+p.empaque;
     [punitEl,netoEl,ivaEl,totEl].forEach(e=>{if(e)e.textContent='—';});
     if(dtoEl){dtoEl.textContent='—';dtoEl.className='dto-tag dto-tag-0';}
     calcTotals();return;
@@ -2401,10 +2578,10 @@ function calcRow(i){
   const punit=getPrecioByQty(p,qty),dto=getDtoInfo(qty);
   const neto=Math.round(punit*qty/1.19),iva=Math.round(neto*0.19);
   if(dtoEl){dtoEl.textContent=dto.label;dtoEl.className='dto-tag '+dto.cls;}
-  if(punitEl) punitEl.textContent=fmt(punit);
-  if(netoEl) netoEl.textContent=fmt(neto);
-  if(ivaEl) ivaEl.textContent=fmt(iva);
-  if(totEl) totEl.textContent=fmt(neto+iva);
+  if(punitEl)punitEl.textContent=fmt(punit);
+  if(netoEl)netoEl.textContent=fmt(neto);
+  if(ivaEl)ivaEl.textContent=fmt(iva);
+  if(totEl)totEl.textContent=fmt(neto+iva);
   calcTotals();
 }
 
@@ -2413,9 +2590,9 @@ function calcTotals(){
   for(let i=0;i<NUM_FILAS;i++){
     const nom=(document.getElementById('csel'+i)||{}).value||'';
     const qty=parseInt((document.getElementById('cqty'+i)||{}).value||0)||0;
-    if(!nom||qty<=0) continue;
-    const p=allProducts.find(x=>x.nombre===nom); if(!p) continue;
-    if(p.empaque>1&&qty%p.empaque!==0) continue;
+    if(!nom||qty<=0)continue;
+    const p=allProducts.find(x=>x.nombre===nom);if(!p)continue;
+    if(p.empaque>1&&qty%p.empaque!==0)continue;
     const punit=getPrecioByQty(p,qty),neto=Math.round(punit*qty/1.19),iva=Math.round(neto*0.19);
     sN+=neto;sI+=iva;sT+=neto+iva;
   }
@@ -2428,7 +2605,7 @@ function resetCalc(){buildCalcRows();['ctNeto','ctIva','ctTotal'].forEach(id=>do
 
 function abrirCalculadora(){
   document.getElementById('prodPage').classList.remove('active');
-  if(allProducts.length) buildCalcRows();
+  if(allProducts.length)buildCalcRows();
   document.getElementById('calcModal').classList.add('active');
 }
 
@@ -2439,9 +2616,9 @@ function enviarCalculadora(){
   for(let i=0;i<NUM_FILAS;i++){
     const nom=(document.getElementById('csel'+i)||{}).value||'';
     const qty=parseInt((document.getElementById('cqty'+i)||{}).value||0)||0;
-    if(!nom||qty<=0) continue;
-    const p=allProducts.find(x=>x.nombre===nom); if(!p) continue;
-    if(p.empaque>1&&qty%p.empaque!==0) continue;
+    if(!nom||qty<=0)continue;
+    const p=allProducts.find(x=>x.nombre===nom);if(!p)continue;
+    if(p.empaque>1&&qty%p.empaque!==0)continue;
     const punit=getPrecioByQty(p,qty),dto=getDtoInfo(qty);
     const neto=Math.round(punit*qty/1.19),iva=Math.round(neto*0.19);
     lineas.push('• '+nom+' x'+qty+' → '+fmt(punit)+'/und → '+fmt(neto+iva)+' (dto '+dto.label+')');
@@ -2455,13 +2632,13 @@ function enviarCalculadora(){
 
 document.addEventListener('DOMContentLoaded',()=>{
   loadProducts();
-  const calcModal=document.getElementById('calcModal');
-  if(calcModal) calcModal.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active');});
+  const cm=document.getElementById('calcModal');
+  if(cm)cm.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active');});
 });
 
 window.addEventListener('scroll',()=>{
   const nav=document.querySelector('nav');
-  if(nav) nav.style.background=window.scrollY>50?'rgba(11,26,62,0.98)':'rgba(11,26,62,0.96)';
+  if(nav)nav.style.background=window.scrollY>50?'rgba(11,26,62,0.98)':'rgba(11,26,62,0.96)';
 });
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
